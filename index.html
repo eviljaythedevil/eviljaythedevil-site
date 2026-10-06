@@ -77,6 +77,12 @@ footer{padding:2rem 0 4rem;color:var(--ash);font-size:.95rem;border-top:1px soli
 .rv-l{transform:translateX(-90px)}.rv-r{transform:translateX(90px)}.rv.in{opacity:1;transform:none}
 @media(min-width:52rem){.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}.cw{margin-top:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}*{animation:none!important}}
+
+#observer{position:fixed;right:2vw;top:15vh;z-index:999;width:120px;text-align:center;font-size:12px;opacity:.9}
+#observer .eyes{font-size:20px}
+.slot{margin:20px 0}
+.vf video{width:100%;border-radius:12px}
+.cap{font-style:italic;opacity:.8}
 </style>
 </head>
 <body>
@@ -158,6 +164,8 @@ TheDevil</h1>
 
 <svg class="drip" aria-hidden="true"><rect width="100%" height="70" fill="url(#dp)"/></svg>
 
+
+<div id="observer"><div class="eyes">👀</div><p>una muchacha que estaba observando todo.</p></div>
 <section id="follow">
 <div class="wrap">
 <h2 class="brush rv">Watch and follow</h2>
@@ -196,7 +204,7 @@ var mask=$('#mask'),bar=$('#bar'),pu=$$('.pu'),ticking=false;
 function upd(){ticking=false;var y=scrollY,max=document.documentElement.scrollHeight-innerHeight,p=max>0?y/max:0;
 bar.style.width=(p*100)+'%';
 if(!R){var x=(innerWidth-mask.offsetWidth-8)*(.5+.5*Math.cos(p*Math.PI*5)),yy=(innerHeight-mask.offsetHeight*1.3)*(.55+.4*Math.abs(Math.sin(p*Math.PI*2.5)));
-mask.style.transform='translate('+x+'px,'+yy+'px) rotate('+Math.sin(p*18)*18+'deg)';
+mask.style.transform=(window.DV&&DV.park())||'translate('+x+'px,'+yy+'px) rotate('+Math.sin(p*18)*18+'deg)';
 $$('[data-s]').forEach(function(el){var b=el.parentElement.getBoundingClientRect(),s=+el.dataset.s,r=+(el.dataset.r||0);el.style.transform='translateY('+(b.top*s)+'px) rotate('+(b.top*r)+'deg)'})}}
 addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();
 if(!R){
@@ -210,6 +218,22 @@ for(var i=0;i<45;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHei
 (function f(n){cx.clearRect(0,0,W,H);P.forEach(function(p){p.y-=p.v;p.x+=Math.sin(n/900+p.d)*.4;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fillStyle=p.r>1.8?'#ff6a00':'#c1121f';cx.globalAlpha=.7;cx.fill()});requestAnimationFrame(f)})(0);
 }
 })();
+</script>
+
+<script>
+var VIDS=[{src:'videos/clip1.mp4', title:'una muchacha que estaba observando todo.'}];
+var B='';
+var box=document.getElementById('video-box')||document.body;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+ var m=e.target.firstChild,go=e.isIntersecting;
+ if(m.tagName==='VIDEO'){if(go){var q=m.play();if(q&&q.catch)q.catch(function(){})}else m.pause()}
+})},{threshold:.6});
+VIDS.forEach(function(v,i){
+ var s=document.createElement('div');s.className='slot '+(i%2?'r':'l');
+ var md='<video src="'+v.src+'" muted loop playsinline preload="metadata"></video>';
+ s.innerHTML='<div class="vf">'+md+'<p class="cap">'+v.title+'</p></div><div class="dv">'+B+'</div>';
+ box.appendChild(s); io.observe(s);
+});
 </script>
 </body>
 </html>
