@@ -84,6 +84,12 @@ footer{padding:2rem 0 4rem;color:var(--ash);font-size:.95rem;border-top:1px soli
 .vf video{width:100%;border-radius:12px}
 .cap{font-style:italic;opacity:.8}
 </style>
+
+<style id="FINAL-BANNER-FIX">
+header, .pro-nav, nav{ z-index:10000 !important; top:0 !important; }
+.marquee-wrap{ top:56px !important; z-index:9999 !important; height:36px !important; }
+body{ padding-top:96px !important; }
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -152,6 +158,23 @@ TheDevil</h1>
 <p class="stat rv"><b class="brush" data-count="431600">0</b>views in the last 30 days.</p>
 </div>
 </section>
+<section id="popcorn-double" style="padding:60px 20px;background:#050505;text-align:center;border-top:2px solid #c1121f;border-bottom:2px solid #c1121f">
+<h2 style="font-size:34px;font-weight:900;letter-spacing:1px">CENTER THEATER 🍿</h2>
+<p style="opacity:.7;margin-top:6px">Double eating popcorn - tap to switch video</p>
+<div style="position:relative;max-width:720px;margin:30px auto;background:#111;border-radius:24px;padding:18px;border:1px solid #333;box-shadow:0 20px 60px rgba(193,18,31,.4)">
+<div style="position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9">
+<video id="centerVideo" src="videos/clip1.mp4" controls autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>
+<div style="position:absolute;bottom:12px;left:12px;font-size:32px;filter:drop-shadow(0 2px 4px black)">🍿</div>
+<div style="position:absolute;bottom:12px;right:12px;font-size:32px;filter:drop-shadow(0 2px 4px black)">🍿</div>
+</div>
+<div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+<button onclick="document.getElementById('centerVideo').src='videos/clip1.mp4'" style="padding:10px 18px;background:#c1121f;color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer">CLIP 1</button>
+<button onclick="document.getElementById('centerVideo').src='videos/clip2.mp4'" style="padding:10px 18px;background:#222;color:#fff;border:1px solid #444;border-radius:10px;font-weight:800;cursor:pointer">CLIP 2</button>
+<button onclick="document.getElementById('centerVideo').src='videos/fixed.mp4'" style="padding:10px 18px;background:#222;color:#fff;border:1px solid #444;border-radius:10px;font-weight:800;cursor:pointer">FIXED</button>
+</div>
+</div>
+</section>
+
 
 <section data-aos="fade-up" id="what">
 <div class="wrap">
@@ -165,7 +188,7 @@ TheDevil</h1>
 <svg class="drip" aria-hidden="true"><rect width="100%" height="70" fill="url(#dp)"/></svg>
 
 
-<div id="observer"><div class="eyes">👀</div><p>una muchacha que estaba observando todo.</p></div>
+<div id="observer"><div class="eyes"></div><p></p></div>
 <section data-aos="fade-up" id="follow">
 <div class="wrap">
 <h2 class="brush rv">Watch and follow</h2>
@@ -221,7 +244,7 @@ for(var i=0;i<45;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHei
 </script>
 
 <script>
-var VIDS=[{src:'videos/clip1.mp4', title:'una muchacha que estaba observando todo.'},{src:'videos/clip2.mp4',title:'Welcome to the haunt'}];
+var VIDS=[{src:'videos/clip1.mp4', title:''},{src:'videos/clip2.mp4',title:'Welcome to the haunt'}];
 var B='';
 var box=document.getElementById('video-box')||document.body;
 var io=new IntersectionObserver(function(es){es.forEach(function(e){
