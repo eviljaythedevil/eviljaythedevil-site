@@ -1,18 +1,32 @@
-// 30 sec dropdown - up then down, stays down
+// 30 sec - ONLY dropdown menu moves, hero stays still
 document.addEventListener('DOMContentLoaded', () => {
-  const banner = document.querySelector('header, #topBanner, nav, .banner');
-  if (!banner) return;
-  
-  banner.style.transition = 'transform 0.7s cubic-bezier(.34,1.56,.64,1)';
-  banner.style.willChange = 'transform';
-  
-  // 1. go UP after 1 sec (hide)
+  // only the dropdown, never header/hero/banner
+  const menu = document.querySelector('.dropdown-menu, #dropdownMenu, .dropdown, .nav-dropdown, [data-dropdown]');
+  if (!menu) return;
+
+  menu.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+  menu.style.transformOrigin = 'top';
+  menu.style.willChange = 'transform';
+
+  // start hidden UP
+  menu.style.transform = 'translateY(-120%)';
+  menu.style.opacity = '0';
+  menu.style.pointerEvents = 'none';
+
+  // stay UP
   setTimeout(() => {
-    banner.style.transform = 'translateY(-110%)';
+    menu.style.transform = 'translateY(-120%)';
   }, 1000);
-  
-  // 2. go DOWN after 30 sec total, stays down
+
+  // after 30 sec go DOWN and stay down
   setTimeout(() => {
-    banner.style.transform = 'translateY(0)';
+    menu.style.transform = 'translateY(0)';
+    menu.style.opacity = '1';
+    menu.style.pointerEvents = 'auto';
   }, 30000);
+});
+
+// make sure hero/header never moves
+document.querySelectorAll('header, .hero, #hero, .banner, #topBanner').forEach(el=>{
+  el.style.transform='none';
 });
