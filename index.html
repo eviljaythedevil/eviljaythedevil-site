@@ -131,9 +131,7 @@ TheDevil</h1>
 <div class="btns">
 <a class="btn" href="#follow"><svg class="ic"><use href="#i-play"/></svg>Watch now</a>
 <a class="btn alt" href="#booking"><svg class="ic"><use href="#i-mail"/></svg>Book EvilJay</a>
-      <a href="/videos.html" style="display:inline-block;margin-top:10px;padding:12px 20px;background:#c1121f;color:#fff;border-radius:8px;text-decoration:none;font-weight:900">WATCH LATEST YOUTUBE →</a>
-      <a href="/instagram.html" style="display:inline-block;margin-top:10px;margin-left:8px;padding:12px 20px;border:1px solid #c1121f;color:#fff;border-radius:8px;text-decoration:none;font-weight:900">INSTAGRAM</a>
-      <a href="#</a>
+<div id="extraBtns"><a href="/videos.html" style="background:#c1121f;color:#fff">WATCH LATEST YOUTUBE →</a><a href="https://instagram.com/eviljaythedevil" target="_blank" style="border:1px solid #c1121f;color:#fff">INSTAGRAM</a></div>
 </div>
 </div>
 <div class="cw" data-s="-.06">
@@ -141,12 +139,13 @@ TheDevil</h1>
 </div>
 </div>
 </header>
+<style>#extraBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}#extraBtns a{padding:10px 18px;border-radius:8px;font-weight:900;text-decoration:none}</style>
 
 <svg class="drip" aria-hidden="true"><rect width="100%" height="70" fill="url(#dp)"/></svg>
 <div class="band brush" aria-hidden="true"><div>Music &bull; Comedy &bull; Podcast &bull; Content &bull; </div></div>
 
 <main>
-<section id="about">
+<section data-aos="fade-up" id="about">
 <svg class="deco ic" data-s=".2" data-r=".1" style="right:4%;top:10%"><use href="#i-fire"/></svg>
 <div class="wrap">
 <h2 class="brush rv">Who is EvilJay?</h2>
@@ -156,7 +155,7 @@ TheDevil</h1>
 </div>
 </section>
 
-<section id="what">
+<section data-aos="fade-up" id="what">
 <div class="wrap">
 <h2 class="brush rv">The Devil's work</h2>
 <div class="row rv rv-l"><svg class="ic"><use href="#i-mic"/></svg><div><h3 class="brush">Podcast</h3><p>The EvilJayTheDevil Show: interviews, live streams, and conversations with no filter.</p></div></div>
@@ -169,7 +168,7 @@ TheDevil</h1>
 
 
 <div id="observer"><div class="eyes">👀</div><p>una muchacha que estaba observando todo.</p></div>
-<section id="follow">
+<section data-aos="fade-up" id="follow">
 <div class="wrap">
 <h2 class="brush rv">Watch and follow</h2>
 <ul class="links rv">
@@ -184,13 +183,10 @@ TheDevil</h1>
 </div>
 </section>
 
-<section id="booking">
+<section data-aos="fade-up" id="booking">
 <svg class="deco ic" data-s=".2" data-r="-.07" style="left:3%;top:20%"><use href="#i-fork"/></svg>
 <div class="wrap">
-<h2 class="brush rv">Book EvilJay</a>
-      <a href="/videos.html" style="display:inline-block;margin-top:10px;padding:12px 20px;background:#c1121f;color:#fff;border-radius:8px;text-decoration:none;font-weight:900">WATCH LATEST YOUTUBE →</a>
-      <a href="/instagram.html" style="display:inline-block;margin-top:10px;margin-left:8px;padding:12px 20px;border:1px solid #c1121f;color:#fff;border-radius:8px;text-decoration:none;font-weight:900">INSTAGRAM</a>
-      <a href="#</h2>
+<h2 class="brush rv">Book EvilJay</h2>
 <p class="rv">Comedy shows, podcast guest spots, interviews, and features.</p>
 <p class="rv"><a class="mail" href="mailto:eviljaythedevil@yahoo.com"><svg class="ic"><use href="#i-mail"/></svg>eviljaythedevil@yahoo.com</a></p>
 </div>
@@ -253,9 +249,10 @@ VIDS.forEach(function(v,i){
     <a href="#videos" style="display:block;padding:10px;color:#fff;text-decoration:none;">Videos</a>
     <a href="#booking" style="display:block;padding:10px;color:#fff;text-decoration:none;">Booking</a>
     <a href="/videos.html">YouTube</a>
-  <a href="/instagram.html">Instagram</a>
+  <a href="https://instagram.com/eviljaythedevil" target="_blank">Instagram</a>
 </nav>
 </header>
+<style>#extraBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}#extraBtns a{padding:10px 18px;border-radius:8px;font-weight:900;text-decoration:none}</style>
 <audio id="bg" loop src="videos/fixed.mp4"></audio>
 <button id="musicBtn" style="position:fixed;bottom:20px;left:20px;z-index:999;background:#c1121f;color:#fff;border:none;border-radius:50px;padding:12px 18px;cursor:pointer;">▶ Play Music</button>
 <div id="chat-bubble" style="position:fixed;bottom:20px;right:20px;background:#fff;color:#000;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;cursor:pointer;z-index:999;font-size:24px;">💬</div>
@@ -273,5 +270,5 @@ VIDS.forEach(function(v,i){
   inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&inp.value.trim()){msgs.innerHTML+=`<br><br><b>You:</b> ${inp.value}<br><b>Bot:</b> Bet! Check Shows or Booking below.`;inp.value='';}});
 </script>
 
-<script id="closeAfter3sKeep">let t;document.addEventListener("click",e=>{if(e.target.closest("#menuToggle,.hamburger,.menu-toggle,button")){clearTimeout(t);t=setTimeout(()=>{document.querySelectorAll(".nav-links,#mobileMenu,#navMenu").forEach(m=>m.classList.remove("open","active","show"))},3000)}})</script></body>
+</body>
 </html>
