@@ -1,53 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Videos - EvilJayTheDevil</title>
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{--blood:#c1121f;--bone:#f2efe9}
-body{margin:0;background:#000;color:var(--bone);font-family:"Barlow",sans-serif;padding-top:72px}
-.brush{font-family:"Permanent Marker",cursive}
-#pro-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.9);display:flex;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--blood)}
-.grid{max-width:1200px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;padding:0 20px}
-.card{background:#111;border:2px solid #222;border-radius:14px;overflow:hidden}
-.card iframe{width:100%;height:200px;border:0}
-</style>
+<style>:root{--blood:#c1121f;--bone:#f2efe9}body{margin:0;background:#000;color:var(--bone);font-family:Barlow,sans-serif;padding-top:72px}.brush{font-family:Permanent Marker,cursive}#pro-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.9);display:flex;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--blood)}.grid{max-width:1200px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;padding:0 20px}.card{background:#111;border:2px solid #222;border-radius:14px;overflow:hidden}.card iframe{width:100%;height:200px;border:0}</style>
 </head>
 <body>
-<header id="pro-nav">
-<div><a href="/" style="color:#fff;text-decoration:none;font-weight:900">EvilJayTheDevil</a></div>
-<div><a href="/" style="color:#fff;text-decoration:none">← Home</a></div>
-</header>
+<header id="pro-nav"><div><a href="/" style="color:#fff;text-decoration:none;font-weight:900">EvilJayTheDevil</a></div><div><a href="/" style="color:#fff;text-decoration:none">← Home</a></div></header>
 <h1 class="brush" style="text-align:center;font-size:40px;color:var(--blood)">LATEST UPLOADS</h1>
 <p style="text-align:center;opacity:.6">Auto-syncs when Evil J uploads</p>
 <div id="yt-grid" class="grid">Loading YouTube...</div>
 <script>
-async function loadVids(){
-  const proxy = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.youtube.com/@eviljaythedevil');
-  let channelId = null;
-  try{
-    const r = await fetch(proxy);
-    const j = await r.json();
-    const m = j.contents.match(/"channelId":"(UC[^"]+)"/);
-    if(m) channelId = m[1];
-  }catch(e){}
-  if(!channelId){
-    document.getElementById('yt-grid').innerHTML = 'Could not load - <a href="https://youtube.com/@eviljaythedevil" style="color:#c1121f">Watch on YouTube</a>';
-    return;
-  }
-  const rss = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-  const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`;
-  const data = await fetch(api).then(r=>r.json());
-  const g = document.getElementById('yt-grid');
-  g.innerHTML = "";
-  data.items.forEach(v=>{
-    const id = v.link.split('v=')[1];
-    g.innerHTML += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div style="padding:10px"><b>${v.title}</b></div></div>`;
-  });
-}
-loadVids();
+async function loadVids(){const proxy='https://api.allorigins.win/get?url='+encodeURIComponent('https://www.youtube.com/@eviljaythedevil');let cid=null;try{const r=await fetch(proxy);const j=await r.json();const m=j.contents.match(/"channelId":"(UC[^"]+)"/);if(m) cid=m[1];}catch(e){}if(!cid){document.getElementById('yt-grid').innerHTML='Could not load - <a href="https://youtube.com/@eviljaythedevil" style="color:#c1121f">Watch on YouTube</a>';return;}const rss=`https://www.youtube.com/feeds/videos.xml?channel_id=${cid}`;const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`;const data=await fetch(api).then(r=>r.json());const g=document.getElementById('yt-grid');g.innerHTML="";data.items.forEach(v=>{const id=v.link.split('v=')[1];g.innerHTML+=`<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div style="padding:10px"><b>${v.title}</b></div></div>`;});}loadVids();
 </script>
 </body>
 </html>
