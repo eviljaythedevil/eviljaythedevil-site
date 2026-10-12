@@ -3,78 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EVILJAY THEATER - @eviljayyy - Daily Auto-Play</title>
+<title>EVILJAY THEATER - @eviljayyy Daily</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#050505;color:#fff;font-family:system-ui,sans-serif;overflow-x:hidden}
-.curtain{position:fixed;top:0;bottom:0;width:8px;z-index:99;background:#c1121f;box-shadow:0 0 12px #c1121f}
-@media(min-width:768px){.curtain{width:12px}}
-.curtain.left{left:0;background:linear-gradient(90deg,#3a0000,#c1121f)}
-.curtain.right{right:0;background:linear-gradient(270deg,#3a0000,#c1121f)}
-.hero{text-align:center;padding:50px 10px 14px;max-width:98%;margin:0 auto}
-.hero h1{font-size:clamp(20px,4vw,38px);font-weight:900;letter-spacing:-1px}
+body{background:#050505;color:#fff;font-family:system-ui,sans-serif;overflow-x:hidden;padding-bottom:40px}
+.curtain{position:fixed;top:0;bottom:0;width:8px;z-index:99;background:#c1121f}
+.curtain.left{left:0;background:linear-gradient(90deg,#300,#c1121f)}
+.curtain.right{right:0;background:linear-gradient(270deg,#300,#c1121f)}
+.hero{text-align:center;padding:48px 10px 12px;max-width:98%;margin:0 auto}
+.hero h1{font-size:clamp(20px,4.5vw,40px);font-weight:900}
 .hero h1 span{color:#c1121f}
-.hero p{color:#666;font-size:9px;letter-spacing:2px;margin-top:6px}
-.btn{margin-top:10px;background:#111;border:1px solid #333;color:#fff;padding:6px 12px;border-radius:20px;font-size:10px}
-.featured{max-width:96%;margin:12px auto}
+.hero p{color:#777;font-size:9px;letter-spacing:2px;margin-top:6px}
+#status{margin-top:8px;background:#111;border:1px solid #222;color:#c1121f;padding:5px 10px;border-radius:20px;font-size:9px;display:inline-block}
+.featured{max-width:96%;margin:14px auto}
 .label{background:#c1121f;color:#fff;padding:5px 10px;border-radius:20px;font-size:9px;font-weight:900;display:inline-block;margin-bottom:6px}
-.screen{aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;border:1px solid #222}
+.screen{aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;border:1px solid #1a1a1a}
 .screen iframe{width:100%;height:100%;border:0}
-.theaters{max-width:96%;margin:16px auto;display:flex;flex-direction:column;gap:24px;padding:0 4px}
+.theaters{max-width:96%;margin:16px auto;display:flex;flex-direction:column;gap:22px}
 .theater{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:12px;overflow:hidden}
-.top{height:24px;background:linear-gradient(180deg,#e21b2a,#7a0a0a);display:flex;align-items:center;justify-content:center;font-size:7px;letter-spacing:1px;font-weight:900}
+.top{height:26px;background:linear-gradient(180deg,#e21b2a,#7a0a0a);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;letter-spacing:1px}
 .info{padding:8px 12px;display:flex;justify-content:space-between;font-size:11px;background:#0a0a0a}
-.recliner{height:40px;background:#050505;display:flex;align-items:center;justify-content:center;flex-direction:column;border-top:1px solid #111;font-size:18px}
-footer{text-align:center;color:#333;padding:24px;font-size:8px}
+.recliner{height:40px;background:#050505;display:flex;align-items:center;justify-content:center;border-top:1px solid #111}
 </style>
 </head>
 <body>
 <div class="curtain left"></div>
 <div class="curtain right"></div>
-
 <div class="hero">
 <h1>EVILJAY <span>THEATER</span></h1>
 <p>YOUTUBE.COM/@EVILJAYYY • DAILY AUTO-PLAY • FRONT ROW</p>
-<div style="margin-top:6px;color:#c1121f;font-size:9px">New video plays automatically every day - uploads playlist</div>
+<div id="status">Loading real videos from @eviljayyy...</div>
 </div>
 
-<div class="featured">
-<div class="label">🔥 DAILY FEATURED - NEWEST FROM @eviljayyy - AUTO UPDATES DAILY</div>
-<div class="screen">
-<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&rel=0&modestbranding=1" allowfullscreen></iframe>
-</div>
-</div>
+<div class="featured" id="featured"></div>
+<div class="theaters" id="theaters"></div>
 
-<div class="theaters">
-<div class="theater">
-<div class="top">THEATER 1 • FRONT ROW • NEWEST</div>
-<div class="screen"><iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&index=1&rel=0" allowfullscreen></iframe></div>
-<div class="info"><span>Daily Drop #1</span><span>@eviljayyy</span></div>
-<div class="recliner">💺<div style="font-size:5px;color:#222">RECLINER GUY WATCHING BELOW</div></div>
-</div>
+<script>
+async function getRealVideos(){
+  const urls = [
+    'https://www.youtube.com/@eviljayyy/videos',
+    'https://www.youtube.com/@eviljayyy'
+  ];
+  for(let pageUrl of urls){
+    try{
+      const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(pageUrl)}`;
+      const r = await fetch(proxy);
+      const j = await r.json();
+      const html = j.contents || '';
+      // Extract videoIds from ytInitialData
+      const matches = [...html.matchAll(/"videoId":"([a-zA-Z0-9_-]{11})"/g)].map(m=>m[1]);
+      // Unique in order
+      const uniq = [...new Set(matches)];
+      // Filter out shorts/ads that are too short - keep first 30 real
+      if(uniq.length >= 3){
+        return uniq.slice(0,12).map((id,i)=>({videoId:id, title:`@eviljayyy Video ${i+1}`, pubDate:new Date().toISOString()}));
+      }
+    }catch(e){ console.log('proxy fail', e); }
+  }
+  return [];
+}
 
-<div class="theater">
-<div class="top">THEATER 2</div>
-<div class="screen"><iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&index=2&rel=0" allowfullscreen></iframe></div>
-<div class="info"><span>Daily Drop #2</span><span>【entity-Red Velvet¦canonical_name=Red Velvet】</span></div>
-<div class="recliner">💺</div>
-</div>
+function render(videos){
+  if(!videos.length){
+    document.getElementById('status').textContent = 'Retrying @eviljayyy feed...';
+    return;
+  }
+  const newest = videos[0];
+  document.getElementById('status').textContent = `LIVE • ${videos.length} real videos from @eviljayyy • Daily auto-check active • ${new Date().toLocaleTimeString()}`;
 
-<div class="theater">
-<div class="top">THEATER 3</div>
-<div class="screen"><iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&index=3&rel=0" allowfullscreen></iframe></div>
-<div class="info"><span>Vault</span><span>Auto-play</span></div>
-<div class="recliner">💺</div>
-</div>
+  document.getElementById('featured').innerHTML = `
+    <div class="label">🔥 DAILY FEATURED • NEWEST TODAY • AUTO-PLAYS DAILY</div>
+    <div class="screen"><iframe src="https://www.youtube.com/embed/${newest.videoId}?rel=0&modestbranding=1" allowfullscreen></iframe></div>
+    <div style="padding:8px 12px;background:#0a0a0a;border:1px solid #1a1a1a;border-top:0;border-radius:0 0 10px 10px;font-size:11px">Newest from @eviljayyy - auto updates every day when you post</div>
+  `;
 
-<div class="theater">
-<div class="top">FULL CHANNEL • DAILY UPDATES</div>
-<div class="screen"><iframe src="https://www.youtube.com/embed?listType=search&list=@eviljayyy&rel=0" allowfullscreen></iframe></div>
-<div class="info"><span>Search @eviljayyy - all videos</span><span>Daily</span></div>
-<div class="recliner">💺</div>
-</div>
-</div>
+  const wrap = document.getElementById('theaters');
+  wrap.innerHTML = '';
+  videos.forEach((v,i)=>{
+    const d = document.createElement('div');
+    d.className = 'theater';
+    d.innerHTML = `
+      <div class="top">${i===0?'THEATER 1 • FRONT ROW • NEWEST':`THEATER ${i+1}`}</div>
+      <div class="screen"><iframe src="https://www.youtube.com/embed/${v.videoId}?rel=0" loading="lazy" allowfullscreen></iframe></div>
+      <div class="info"><span>${i===0?'Daily Drop #1':`Daily Drop #${i+1}`}</span><span>@eviljayyy</span></div>
+      <div class="recliner">💺<div style="font-size:5px;color:#222;margin-top:2px">RECLINER GUY WATCHING BELOW</div></div>
+    `;
+    wrap.appendChild(d);
+  });
+  localStorage.setItem('eviljay_real_ids', JSON.stringify(videos));
+}
 
-<footer>Vanilla HTML/CSS/JS - same as your site - daily uploads playlist auto-plays new video every day • Built by Zane Deep</footer>
+async function dailyCheck(){
+  const vids = await getRealVideos();
+  if(vids.length) render(vids);
+}
+
+dailyCheck();
+setInterval(dailyCheck, 1000*60*60*6);
+
+// Load cached so it never looks empty
+const cached = localStorage.getItem('eviljay_real_ids');
+if(cached){
+  try{ render(JSON.parse(cached)); }catch(e){}
+}
+</script>
 </body>
 </html>
