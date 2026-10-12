@@ -31,7 +31,7 @@ body{background:radial-gradient(ellipse at top,#1a0508,#050505 60%);color:#fff;f
 .pop{position:fixed;bottom:-40px;font-size:22px;z-index:5;opacity:.7;animation:rise 9s linear infinite}
 @keyframes rise{to{transform:translateY(-110vh) rotate(40deg)}}
 .foot{text-align:center;padding:10px 10px 40px}
-.foot a{background:#c1121f;color:#fff;padding:12px 22px;border-radius:24px;text-decoration:none;font-weight:900;font-size:13px}
+.foot a{background:#c1121f;color:#fff;padding:12px 22px;border-radius:24px;text-decoration:none;font-weight:900;font-size:13px;margin:4px;display:inline-block}
 </style></head><body>
 <div class="curtain left"></div><div class="curtain right"></div>
 <div class="pop" style="left:15%">🍿</div>
@@ -40,26 +40,39 @@ body{background:radial-gradient(ellipse at top,#1a0508,#050505 60%);color:#fff;f
 
 <div class="hero">
 <h1>🎬 EVILJAY <span>THEATER</span> 🎬</h1>
-<p>YOUTUBE.COM/@EVILJAYYY • DAILY AUTO-PLAY • FRONT ROW</p>
-<div class="now">🔥 NOW SHOWING: NEWEST UPLOAD</div>
+<p>YOUTUBE.COM/@EVILJAYYY • NEW VIDEO EVERY DAY • FRONT ROW</p>
+<div class="now">🔥 TODAY'S FEATURE</div>
 </div>
 
-<div class="wrap"><div class="screen">
-<iframe src="https://www.youtube.com/embed/videoseries?list=UUb93fPn7yL9V68jntdSG_ZQ&autoplay=1&mute=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
-</div></div>
-
+<div class="wrap"><div class="screen" id="featured"></div></div>
 <div class="wrap" id="theaters"></div>
 
-<div class="foot"><a href="https://www.youtube.com/@eviljayyy" target="_blank">🎟️ SUBSCRIBE ON YOUTUBE</a></div>
+<div class="foot">
+<a href="/">🏠 HOME</a>
+<a href="https://www.youtube.com/@eviljayyy" target="_blank">🎟️ SUBSCRIBE ON YOUTUBE</a>
+</div>
 
 <script>
-var L='UUb93fPn7yL9V68jntdSG_ZQ',h='';
-for(var i=0;i<4;i++){
- h+='<div class="theater"><div class="top">🎞️ THEATER '+(i+1)+(i==0?' • FRONT ROW • NEWEST':'')+'</div>'
- +'<div class="screen"><iframe src="https://www.youtube.com/embed/videoseries?list='+L+'&index='+i+'&rel=0" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen></iframe></div>'
- +'<div class="info"><span>Daily Drop #'+(i+1)+'</span><span>@eviljayyy</span></div>'
- +'<div class="seats"><span>💺</span><span>💺</span><span>💺</span><span>💺</span><span>💺</span></div></div>';
+function frame(id,auto){
+  return '<iframe src="https://www.youtube.com/embed/'+id+'?rel=0&playsinline=1'+(auto?'&autoplay=1&mute=1':'')+'" allow="autoplay; encrypted-media; fullscreen" allowfullscreen loading="'+(auto?'eager':'lazy')+'"></iframe>';
 }
-document.getElementById('theaters').innerHTML=h;
+fetch('/api/videos').then(function(r){return r.json()}).then(function(d){
+  var ids=d.ids||[];
+  if(!ids.length) throw 1;
+  var day=Math.floor(Date.now()/86400000);
+  var f=ids[day%ids.length];
+  document.getElementById('featured').innerHTML=frame(f,true);
+  var rest=ids.filter(function(x){return x!==f}).slice(0,4);
+  var h='';
+  for(var i=0;i<rest.length;i++){
+    h+='<div class="theater"><div class="top">🎞️ THEATER '+(i+1)+(i==0?' • FRONT ROW • NEWEST':'')+'</div>'
+    +'<div class="screen">'+frame(rest[i],false)+'</div>'
+    +'<div class="info"><span>Drop #'+(i+1)+'</span><span>@eviljayyy</span></div>'
+    +'<div class="seats"><span>💺</span><span>💺</span><span>💺</span><span>💺</span><span>💺</span></div></div>';
+  }
+  document.getElementById('theaters').innerHTML=h;
+}).catch(function(){
+  document.getElementById('featured').innerHTML='<iframe src="https://www.youtube.com/embed/videoseries?list=UUb93fPn7yL9V68jntdSG_ZQ" allowfullscreen></iframe>';
+});
 </script>
 </body></html>
