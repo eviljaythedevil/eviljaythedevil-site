@@ -103,9 +103,7 @@ footer{padding:2rem 0 4rem;color:var(--ash);font-size:.95rem;border-top:1px soli
 </defs>
 </svg>
 
-<canvas id="embers"></canvas><div id="bar"></div>
-
-<div id="mask" aria-hidden="true">
+<canvas id="embers"></canvas><div id="mask" aria-hidden="true">
 <svg viewBox="0 0 200 250">
 <path d="M45 70C20 40 25 10 55 0c-10 25 5 40 25 55z" fill="#7a0b13"/><path d="M155 70c25-30 20-60-10-70 10 25-5 40-25 55z" fill="#7a0b13"/>
 <path d="M100 30C40 30 25 90 35 150c8 50 40 90 65 95 25-5 57-45 65-95 10-60-5-120-65-120z" fill="#c1121f"/>
@@ -167,7 +165,7 @@ TheDevil</h1>
 <svg class="drip" aria-hidden="true"><rect width="100%" height="70" fill="url(#dp)"/></svg>
 
 
-<div id="observer"><div class="eyes">👀</div><p>una muchacha que estaba observando todo.</p></div>
+<p></p></div>
 <section data-aos="fade-up" id="follow">
 <div class="wrap">
 <h2 class="brush rv">Watch and follow</h2>
@@ -223,7 +221,7 @@ for(var i=0;i<45;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHei
 </script>
 
 <script>
-var VIDS=[{src:'videos/clip1.mp4', title:'una muchacha que estaba observando todo.'},{src:'videos/clip2.mp4',title:'Welcome to the haunt'}];
+var VIDS=[{src:'videos/clip1.mp4', title:''},{src:'videos/clip2.mp4',title:'Welcome to the haunt'}];
 var B='';
 var box=document.getElementById('video-box')||document.body;
 var io=new IntersectionObserver(function(es){es.forEach(function(e){
@@ -272,3 +270,4 @@ VIDS.forEach(function(v,i){
 
 </body>
 </html>
+<script src="dropdown_30s.js"></script>
