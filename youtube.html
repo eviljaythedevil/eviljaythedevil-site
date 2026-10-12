@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVILJAY THEATER - @eviljayyy Live</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050505;color:#fff;font-family:system-ui,sans-serif;overflow-x:hidden;padding-bottom:120px}
+.curtain{position:fixed;top:0;bottom:0;width:14vw;z-index:100;transition:transform 1.8s cubic-bezier(.77,0,.175,1)}
+.curtain.left{left:0;background:linear-gradient(90deg,#1a0000,#c1121f 40%,#7a0a0a);border-right:4px solid #5a0000;box-shadow:8px 0 30px #000}
+.curtain.right{right:0;background:linear-gradient(270deg,#1a0000,#c1121f 40%,#7a0a0a);border-left:4px solid #5a0000;box-shadow:-8px 0 30px #000}
+.curtain.open.left{transform:translateX(-100%)}
+.curtain.open.right{transform:translateX(100%)}
+.hero{text-align:center;padding:90px 20px 30px;z-index:2;position:relative}
+.hero h1{font-size:clamp(36px,7vw,72px);font-weight:900;letter-spacing:-2px;line-height:.85}
+.hero h1 span{color:#c1121f;text-shadow:0 0 20px #c1121f80}
+.hero p{color:#aaa;margin-top:14px;font-size:12px;letter-spacing:2px;text-transform:uppercase}
+#status{color:#c1121f;font-size:11px;margin-top:12px;background:#111;display:inline-block;padding:7px 14px;border-radius:20px;border:1px solid #222}
+.theaters{max-width:900px;margin:0 auto;padding:20px;display:flex;flex-direction:column;gap:80px;z-index:2;position:relative}
+.theater{position:relative;background:#0f0f0f;border:2px solid #1a1a1a;border-radius:20px;overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.9),0 0 0 1px #c1121f33;animation:dropIn .9s ease}
+@keyframes dropIn{from{transform:translateY(-70px) scale(.92);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.curtain-top{height:42px;background:linear-gradient(180deg,#e21b2a,#c1121f 60%,#7a0a0a);display:flex;align-items:center;justify-content:center}
+.curtain-top:before{content:'🎭 RED VELVET CURTAINS';color:#fff;font-size:10px;font-weight:900;letter-spacing:3px}
+.screen{aspect-ratio:16/9;background:#000;position:relative}
+.screen iframe{width:100%;height:100%;border:0;display:block}
+.badge{position:absolute;top:12px;right:12px;background:#c1121f;color:#fff;padding:7px 14px;border-radius:24px;font-weight:900;font-size:11px;z-index:3;box-shadow:0 4px 12px #000}
+.theater-info{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:#0a0a0a;border-top:1px solid #1a1a1a}
+.theater-info h3{font-size:15px;font-weight:700;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.theater-info span{color:#555;font-size:11px;background:#111;padding:4px 10px;border-radius:12px}
+.recliner{height:70px;background:#050505;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;border-top:1px solid #111}
+.recliner .icon{font-size:32px}
+.recliner .text{font-size:8px;color:#2a2a2a;letter-spacing:2px;text-transform:uppercase}
+.bottom-row{max-width:900px;margin:90px auto 0;padding:0 20px;text-align:center;z-index:2;position:relative}
+.bottom-card{background:linear-gradient(180deg,#0f0f0f,#0a0a0a);border:2px solid #1a1a1a;border-radius:20px;padding:50px 20px}
+.bottom-card h2{color:#c1121f;letter-spacing:3px;font-size:18px;margin-top:14px}
+footer{text-align:center;color:#333;padding:50px 20px;font-size:11px}
+.popcorn{position:fixed;bottom:92px;left:0;right:0;display:flex;justify-content:center;gap:12px;z-index:5;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="curtain left" id="cLeft"></div>
+<div class="curtain right" id="cRight"></div>
+<div class="hero">
+<h1>EVILJAY <span>THEATER</span></h1>
+<p>youtube.com/@eviljayyy • 30 VIDEOS • LIVE FRONT ROW</p>
+<div id="status">Connecting to @eviljayyy...</div>
+</div>
+<div class="theaters" id="theaters"><div style="text-align:center;padding:60px;color:#555">Loading real videos from https://youtube.com/@eviljayyy ...</div></div>
+<div class="bottom-row"><div class="bottom-card"><div style="font-size:52px">💺</div><div style="font-size:36px">🎬</div><h2>YOU'RE IN THE FRONT ROW</h2><p style="color:#666;margin-top:8px;font-size:13px">Every new drop auto-plays front stage. Red velvet curtains, recliner guy watching from below - immersive every day.</p></div></div>
+<div class="popcorn">🍿 <span style="color:#c1121f">•</span> 🍿</div>
+<footer>© 2026 EvilJayTheDevil • Built by Zane Deep • @eviljayyy</footer>
+<script>
+const HANDLE='@eviljayyy';
+async function getChannelId(){
+try{
+const proxy=`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.youtube.com/@eviljayyy')}`;
+const r=await fetch(proxy); const j=await r.json(); const html=j.contents||'';
+const a=html.match(/"channelId"\s*:\s*"(UC[^"]+)"/); const b=html.match(/<meta itemprop="channelId" content="(UC[^"]+)"/);
+return (a&&a[1])||(b&&b[1])||null;
+}catch(e){return null}
+}
+async function fetchById(id){
+const rss=`https://www.youtube.com/feeds/videos.xml?channel_id=${id}`;
+const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`;
+const r=await fetch(api); const data=await r.json();
+return data.items.map(item=>({videoId:item.guid.split(':').pop(),title:item.title,pubDate:item.pubDate})).filter(v=>v.videoId);
+}
+function render(videos){
+const wrap=document.getElementById('theaters'); wrap.innerHTML='';
+videos.forEach((v,i)=>{
+const d=document.createElement('div'); d.className='theater';
+d.innerHTML=`<div class="curtain-top"></div><div class="screen">${i===0?'<div class="badge">NEW DROP 🔥 FRONT STAGE</div>':`<div class="badge">#${i+1} THEATER</div>`}<iframe src="https://www.youtube.com/embed/${v.videoId}?rel=0&modestbranding=1" allowfullscreen></iframe></div><div class="theater-info"><h3>${v.title}</h3><span>${new Date(v.pubDate).toLocaleDateString()}</span></div><div class="recliner"><div class="icon">💺</div><div class="text">Recliner Guy Watching From Below • Front Row</div></div>`;
+wrap.appendChild(d);
+});
+localStorage.setItem('eviljayyy_real',JSON.stringify(videos));
+}
+function openC(){setTimeout(()=>{document.getElementById('cLeft').classList.add('open');document.getElementById('cRight').classList.add('open')},900)}
+async function init(){
+try{
+const id=await getChannelId(); if(!id) throw 'no id';
+const vids=await fetchById(id); render(vids);
+document.getElementById('status').textContent=`LIVE - ${vids.length} real videos from ${HANDLE} - newest on top - updates daily`;
+openC();
+}catch(e){ setTimeout(init,5000); document.getElementById('status').textContent='Retrying @eviljayyy feed...'; }
+}
+init();
+const cached=localStorage.getItem('eviljayyy_real'); if(cached){ try{render(JSON.parse(cached)); openC()}catch(e){} }
+</script>
+</body>
+</html>
