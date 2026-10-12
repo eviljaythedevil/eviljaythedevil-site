@@ -1,0 +1,34 @@
+/* fix.css v3 - REAL FIX */
+
+header{position:relative !important; z-index:5 !important; overflow:visible !important;}
+.hero, #hero, section.hero{overflow:visible !important; z-index:1 !important;}
+
+#devilFace{
+  position:fixed !important;
+  top:85px !important;
+  right:18px !important;
+  left:auto !important;
+  width:88px !important;
+  height:88px !important;
+  z-index:99999 !important;
+  display:block !important;
+}
+
+/* bottom bar - keep low */
+#bottomNav, .bottom-nav, div.fixed.bottom-0.left-0.right-0, nav.fixed.bottom-0{
+  z-index:50 !important;
+}
+
+/* chatbot - MUST be above bottom bar */
+#chatbot, #chatbot-evolved, [id*="chatbot"], [class*="chatbot"]{
+  z-index:100000 !important;
+  bottom:90px !important;
+  right:16px !important;
+  position:fixed !important;
+}
+
+/* GHOST BLACK BOX - bottom left */
+.ghost-box, body > div.fixed.bottom-0.left-0:not(nav),
+div.fixed.bottom-\[20px\].left-\[20px\]{
+  display:none !important;
+}
