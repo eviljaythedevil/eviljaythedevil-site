@@ -3,123 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EVILJAY THEATER - @eviljayyy - Daily</title>
+<title>EVILJAY THEATER - @eviljayyy - Daily Auto-Play</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#050505;color:#fff;font-family:system-ui,sans-serif;padding-bottom:100px;overflow-x:hidden}
-.curtain{position:fixed;top:0;bottom:0;width:22px;z-index:100;transition:transform 1.6s cubic-bezier(.77,0,.175,1)}
-@media(min-width:768px){.curtain{width:36px}}
-.curtain.left{left:0;background:linear-gradient(90deg,#1a0000,#c1121f 60%,#7a0a0a);border-right:2px solid #5a0000;box-shadow:4px 0 20px #000}
-.curtain.right{right:0;background:linear-gradient(270deg,#1a0000,#c1121f 60%,#7a0a0a);border-left:2px solid #5a0000;box-shadow:-4px 0 20px #000}
-.curtain.open.left{transform:translateX(-100%)}
-.curtain.open.right{transform:translateX(100%)}
-.curtain.hidden{transform:translateX(-100%);opacity:0}
-.hero{text-align:center;padding:70px 16px 20px;z-index:2;position:relative;max-width:95%;margin:0 auto}
-.hero h1{font-size:clamp(22px,5vw,44px);font-weight:900;letter-spacing:-1px;line-height:.9;white-space:nowrap}
+body{background:#050505;color:#fff;font-family:system-ui,sans-serif;overflow-x:hidden}
+.curtain{position:fixed;top:0;bottom:0;width:8px;z-index:99;background:#c1121f;box-shadow:0 0 12px #c1121f}
+@media(min-width:768px){.curtain{width:12px}}
+.curtain.left{left:0;background:linear-gradient(90deg,#3a0000,#c1121f)}
+.curtain.right{right:0;background:linear-gradient(270deg,#3a0000,#c1121f)}
+.hero{text-align:center;padding:50px 10px 14px;max-width:98%;margin:0 auto}
+.hero h1{font-size:clamp(20px,4vw,38px);font-weight:900;letter-spacing:-1px}
 .hero h1 span{color:#c1121f}
-.hero p{color:#888;font-size:11px;letter-spacing:2px;margin-top:10px}
-#status{color:#c1121f;font-size:10px;margin-top:10px;background:#111;padding:6px 12px;border-radius:20px;border:1px solid #222;display:inline-block}
-#toggleView{margin-top:12px;background:#222;color:#fff;border:1px solid #333;padding:6px 14px;border-radius:20px;font-size:11px;cursor:pointer}
-.featured{max-width:92%;margin:24px auto;padding:0;z-index:2;position:relative}
-.featured-label{background:#c1121f;color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:900;display:inline-block;margin-bottom:10px;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.featured.screen{aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden;border:2px solid #c1121f;box-shadow:0 0 30px #c1121f44}
-.featured iframe{width:100%;height:100%;border:0}
-.theaters{max-width:92%;margin:0 auto;padding:12px;display:flex;flex-direction:column;gap:50px;z-index:2;position:relative}
-.theater{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:16px;overflow:hidden;animation:dropIn.7s ease}
-@keyframes dropIn{from{transform:translateY(-40px);opacity:0}to{transform:translateY(0);opacity:1}}
-.curtain-top{height:32px;background:linear-gradient(180deg,#e21b2a,#c1121f 60%,#7a0a0a);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;letter-spacing:2px}
-.screen{aspect-ratio:16/9;background:#000;position:relative}
+.hero p{color:#666;font-size:9px;letter-spacing:2px;margin-top:6px}
+.btn{margin-top:10px;background:#111;border:1px solid #333;color:#fff;padding:6px 12px;border-radius:20px;font-size:10px}
+.featured{max-width:96%;margin:12px auto}
+.label{background:#c1121f;color:#fff;padding:5px 10px;border-radius:20px;font-size:9px;font-weight:900;display:inline-block;margin-bottom:6px}
+.screen{aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;border:1px solid #222}
 .screen iframe{width:100%;height:100%;border:0}
-.badge{position:absolute;top:8px;right:8px;background:#111;color:#fff;padding:5px 10px;border-radius:16px;font-size:10px;border:1px solid #333;z-index:3}
-.badge.new{background:#c1121f;border-color:#ff2a3a}
-.theater-info{padding:14px 16px;display:flex;justify-content:space-between;background:#0a0a0a;font-size:13px}
-.recliner{height:52px;background:#050505;display:flex;align-items:center;justify-content:center;flex-direction:column;border-top:1px solid #111}
-footer{text-align:center;color:#333;padding:40px 20px;font-size:10px}
+.theaters{max-width:96%;margin:16px auto;display:flex;flex-direction:column;gap:24px;padding:0 4px}
+.theater{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:12px;overflow:hidden}
+.top{height:24px;background:linear-gradient(180deg,#e21b2a,#7a0a0a);display:flex;align-items:center;justify-content:center;font-size:7px;letter-spacing:1px;font-weight:900}
+.info{padding:8px 12px;display:flex;justify-content:space-between;font-size:11px;background:#0a0a0a}
+.recliner{height:40px;background:#050505;display:flex;align-items:center;justify-content:center;flex-direction:column;border-top:1px solid #111;font-size:18px}
+footer{text-align:center;color:#333;padding:24px;font-size:8px}
 </style>
 </head>
 <body>
-<div class="curtain left" id="cLeft"></div>
-<div class="curtain right" id="cRight"></div>
+<div class="curtain left"></div>
+<div class="curtain right"></div>
+
 <div class="hero">
 <h1>EVILJAY <span>THEATER</span></h1>
-<p>YOUTUBE.COM/@EVILJAYYY • 30 VIDEOS • FRONT ROW</p>
-<div id="status">Daily check: connecting to @eviljayyy...</div>
-<br>
-<button id="toggleView">Bigger View - Hide Curtains</button>
+<p>YOUTUBE.COM/@EVILJAYYY • DAILY AUTO-PLAY • FRONT ROW</p>
+<div style="margin-top:6px;color:#c1121f;font-size:9px">New video plays automatically every day - uploads playlist</div>
 </div>
 
-<div class="featured" id="featured"></div>
-<div class="theaters" id="theaters"><div style="text-align:center;padding:40px;color:#444">Loading real videos from @eviljayyy - daily auto-play...</div></div>
+<div class="featured">
+<div class="label">🔥 DAILY FEATURED - NEWEST FROM @eviljayyy - AUTO UPDATES DAILY</div>
+<div class="screen">
+<iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&rel=0&modestbranding=1" allowfullscreen></iframe>
+</div>
+</div>
 
-<footer>Daily auto-play active • Checks every 6h + midnight • Built by Zane Deep • @eviljayyy</footer>
+<div class="theaters">
+<div class="theater">
+<div class="top">THEATER 1 • FRONT ROW • NEWEST</div>
+<div class="screen"><iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&index=1&rel=0" allowfullscreen></iframe></div>
+<div class="info"><span>Daily Drop #1</span><span>@eviljayyy</span></div>
+<div class="recliner">💺<div style="font-size:5px;color:#222">RECLINER GUY WATCHING BELOW</div></div>
+</div>
 
-<script>
-const API = '/api/youtube';
-const FALLBACK_RSS = 'https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=UC';
+<div class="theater">
+<div class="top">THEATER 2</div>
+<div class="screen"><iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&index=2&rel=0" allowfullscreen></iframe></div>
+<div class="info"><span>Daily Drop #2</span><span>【entity-Red Velvet¦canonical_name=Red Velvet】</span></div>
+<div class="recliner">💺</div>
+</div>
 
-let lastVideoId = localStorage.getItem('eviljay_last_id') || '';
+<div class="theater">
+<div class="top">THEATER 3</div>
+<div class="screen"><iframe src="https://www.youtube.com/embed?listType=user_uploads&list=@eviljayyy&index=3&rel=0" allowfullscreen></iframe></div>
+<div class="info"><span>Vault</span><span>Auto-play</span></div>
+<div class="recliner">💺</div>
+</div>
 
-async function fetchVideos(){
-  // Try serverless first (same architecture as your site - Vercel api/)
-  try{
-    const r = await fetch(API);
-    if(r.ok){ const j = await r.json(); if(j.length) return j; }
-  }catch(e){ console.log('api fail', e); }
-  // Fallback client-side RSS (try to resolve channelId)
-  try{
-    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent('https://www.youtube.com/@eviljayyy')}`;
-    const pr = await fetch(proxy); const pj = await pr.json();
-    const m = (pj.contents||'').match(/"channelId":"(UC[^"]+)"/);
-    if(m){
-      const rss = `https://www.youtube.com/feeds/videos.xml?channel_id=${m[1]}`;
-      const rssApi = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`;
-      const rr = await fetch(rssApi); const rj = await rr.json();
-      return rj.items.map(i=>({videoId:i.guid.split(':').pop(),title:i.title,pubDate:i.pubDate}));
-    }
-  }catch(e){}
-  return [];
-}
+<div class="theater">
+<div class="top">FULL CHANNEL • DAILY UPDATES</div>
+<div class="screen"><iframe src="https://www.youtube.com/embed?listType=search&list=@eviljayyy&rel=0" allowfullscreen></iframe></div>
+<div class="info"><span>Search @eviljayyy - all videos</span><span>Daily</span></div>
+<div class="recliner">💺</div>
+</div>
+</div>
 
-function render(videos){
-  if(!videos.length) return;
-  const featured = document.getElementById('featured');
-  const newest = videos[0];
-  // Daily featured auto-play
-  featured.innerHTML = `<div class="featured-label">DAILY FEATURED • NEWEST TODAY • AUTO-PLAYING</div><div class="screen"><iframe src="https://www.youtube.com/embed/${newest.videoId}?autoplay=0&rel=0" allowfullscreen></iframe></div><div style="padding:12px;background:#0a0a0a;border:1px solid #1a1a1a;border-top:0;border-radius:0 0 16px 16px"><b>${newest.title}</b><br><small style="color:#666">${new Date(newest.pubDate).toLocaleString()} • Plays daily on this page</small></div>`;
-
-  const wrap = document.getElementById('theaters'); wrap.innerHTML='';
-  videos.forEach((v,i)=>{
-    const isNew = v.videoId === newest.videoId;
-    const d = document.createElement('div'); d.className='theater';
-    d.innerHTML = `<div class="curtain-top">RED VELVET THEATER ${i+1}</div><div class="screen"><div class="badge ${isNew?'new':''}">${isNew?'NEW TODAY 🔥':`THEATER ${i+1}`}</div><iframe src="https://www.youtube.com/embed/${v.videoId}?rel=0" loading="lazy" allowfullscreen></iframe></div><div class="theater-info"><span>${v.title}</span><span>${new Date(v.pubDate).toLocaleDateString()}</span></div><div class="recliner">💺<div style="font-size:7px;color:#222;letter-spacing:1px">RECLINER GUY WATCHING FROM BELOW</div></div>`;
-    wrap.appendChild(d);
-  });
-  if(newest.videoId!== lastVideoId){
-    lastVideoId = newest.videoId;
-    localStorage.setItem('eviljay_last_id', lastVideoId);
-    localStorage.setItem('eviljay_videos', JSON.stringify(videos));
-  }
-  document.getElementById('status').textContent = `LIVE • ${videos.length} real videos • Daily check active • Last: ${new Date().toLocaleTimeString()}`;
-  document.getElementById('cLeft').classList.add('open'); document.getElementById('cRight').classList.add('open');
-}
-
-async function dailyCheck(){
-  const vids = await fetchVideos();
-  if(vids.length){ render(vids); }
-}
-
-document.getElementById('toggleView').onclick = ()=>{
-  document.getElementById('cLeft').classList.toggle('hidden');
-  document.getElementById('cRight').classList.toggle('hidden');
-};
-
-dailyCheck();
-setInterval(dailyCheck, 1000*60*60*6);
-setTimeout(dailyCheck, 1000*60*5);
-
-const cached = localStorage.getItem('eviljay_videos');
-if(cached){ try{ render(JSON.parse(cached)); }catch(e){} }
-</script>
+<footer>Vanilla HTML/CSS/JS - same as your site - daily uploads playlist auto-plays new video every day • Built by Zane Deep</footer>
 </body>
 </html>
