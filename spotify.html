@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EVILJAY STUDIO</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(ellipse at 50% 0,#1b0a2e,#07030d 55%,#000);color:#fff;font-family:system-ui,sans-serif;overflow-x:hidden;min-height:100vh;position:relative}
+.beam{position:fixed;top:-10px;width:6px;height:130vh;transform-origin:top center;z-index:0;pointer-events:none;opacity:.35;mix-blend-mode:screen;filter:blur(2px);animation:sweep 5s ease-in-out infinite alternate}
+.b1{left:15%;background:linear-gradient(#ff2a3d,transparent);animation-delay:0s}
+.b2{left:40%;background:linear-gradient(#a020ff,transparent);animation-delay:-1.5s;animation-duration:6s}
+.b3{left:65%;background:linear-gradient(#2a6bff,transparent);animation-delay:-3s;animation-duration:4.5s}
+.b4{left:88%;background:linear-gradient(#ff2a3d,transparent);animation-delay:-2s;animation-duration:7s}
+@keyframes sweep{from{transform:rotate(-38deg)}to{transform:rotate(38deg)}}
+.content{position:relative;z-index:2;max-width:640px;margin:0 auto;padding:18px 14px 40px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.onair{border:2px solid #ff2a3d;color:#ff2a3d;padding:6px 14px;border-radius:6px;font-weight:900;letter-spacing:3px;font-size:13px;animation:onair 1.4s infinite;text-shadow:0 0 10px #ff2a3d;box-shadow:0 0 14px #ff2a3d,inset 0 0 10px rgba(255,42,61,.4)}
+@keyframes onair{0%,55%{opacity:1}60%,70%{opacity:.25}75%,100%{opacity:1}}
+.rec{font:700 13px monospace;color:#ff6b78;display:flex;align-items:center;gap:7px}
+.rec i{width:11px;height:11px;border-radius:50%;background:#ff2a3d;box-shadow:0 0 10px #ff2a3d;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.15}}
+h1{text-align:center;margin-top:22px;font-size:clamp(28px,8vw,50px);font-weight:900;letter-spacing:2px;text-shadow:0 0 14px #a020ff,0 0 30px #a020ff;animation:flick 4s infinite}
+h1 span{color:#ff2a3d;text-shadow:0 0 14px #ff2a3d,0 0 30px #ff2a3d}
+@keyframes flick{0%,92%,100%{opacity:1}94%{opacity:.5}96%{opacity:1}98%{opacity:.6}}
+.sub{text-align:center;color:#8a7aa8;font-size:10px;letter-spacing:4px;margin-top:6px}
+.eq{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:70px;margin:20px 0 6px}
+.eq b{width:7px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(#ff2a3d,#a020ff,#2a6bff);transform-origin:bottom;animation:bar .8s ease-in-out infinite alternate}
+@keyframes bar{from{transform:scaleY(.08)}to{transform:scaleY(1)}}
+.mon{background:#0b0712;border:3px solid #2b2140;border-radius:16px;padding:12px;box-shadow:0 0 30px rgba(160,32,255,.35),0 0 60px rgba(255,42,61,.15)}
+.mon .scr{border-radius:10px;overflow:hidden;border:1px solid #3a2d57}
+.mon iframe{width:100%;height:480px;border:0;display:block}
+.mon .cap{display:flex;justify-content:space-between;font:700 9px monospace;letter-spacing:2px;color:#6d5e8e;margin-top:8px}
+.desk{margin-top:22px;background:linear-gradient(#17102a,#0c0818);border:2px solid #2b2140;border-radius:14px;padding:16px 10px;box-shadow:0 0 25px rgba(0,0,0,.8)}
+.faders{display:flex;justify-content:space-around;height:110px}
+.fader{position:relative;width:14px;background:#050309;border-radius:7px;border:1px solid #2b2140}
+.fader i{position:absolute;left:-9px;width:30px;height:16px;border-radius:4px;background:linear-gradient(#ddd,#777);box-shadow:0 0 8px rgba(255,255,255,.3);animation:slide 3s ease-in-out infinite alternate}
+@keyframes slide{from{top:78%}to{top:6%}}
+.knobs{display:flex;justify-content:space-around;margin-bottom:16px}
+.knob{width:34px;height:34px;border-radius:50%;background:radial-gradient(#4a3d6b,#1a1230);border:2px solid #5b4a85;position:relative;animation:spin 6s linear infinite}
+.knob:after{content:"";position:absolute;top:3px;left:50%;width:3px;height:10px;margin-left:-1.5px;background:#ff2a3d;border-radius:2px;box-shadow:0 0 6px #ff2a3d}
+@keyframes spin{to{transform:rotate(360deg)}}
+.vu{display:flex;justify-content:center;gap:4px;margin-top:14px}
+.vu u{width:14px;height:8px;border-radius:2px;background:#1c1530;animation:led 1s steps(1) infinite}
+@keyframes led{0%{background:#2fe06a;box-shadow:0 0 6px #2fe06a}50%{background:#ffd23a;box-shadow:0 0 6px #ffd23a}80%{background:#ff2a3d;box-shadow:0 0 6px #ff2a3d}100%{background:#1c1530;box-shadow:none}}
+.vinyl{width:90px;height:90px;border-radius:50%;margin:24px auto 0;background:radial-gradient(circle,#ff2a3d 0 14%,#111 15% 30%,#1b1b1b 31% 33%,#0b0b0b 34% 60%,#1b1b1b 61% 63%,#0b0b0b 64%);border:2px solid #333;box-shadow:0 0 20px rgba(255,42,61,.4);animation:spin 3s linear infinite}
+.notes{position:fixed;bottom:-40px;font-size:24px;z-index:1;opacity:.6;animation:rise 9s linear infinite}
+@keyframes rise{to{transform:translateY(-110vh) rotate(30deg)}}
+.foot{text-align:center;padding-top:24px}
+.foot a{color:#fff;padding:12px 20px;border-radius:24px;text-decoration:none;font-weight:900;font-size:13px;margin:4px;display:inline-block;background:#c1121f}
+.foot a.sp{background:#1db954;color:#000;box-shadow:0 0 18px #1db954}
+</style></head><body>
+<div class="beam b1"></div><div class="beam b2"></div><div class="beam b3"></div><div class="beam b4"></div>
+<div class="notes" style="left:10%">🎵</div>
+<div class="notes" style="left:46%;animation-delay:3s">🎧</div>
+<div class="notes" style="left:85%;animation-delay:6s">🎶</div>
+
+<div class="content">
+<div class="top"><div class="onair">ON AIR</div><div class="rec"><i></i>REC <span id="t">00:00</span></div></div>
+<h1>🎧 EVILJAY <span>STUDIO</span></h1>
+<p class="sub">LIVE SESSION • STUDIO A • PRESS PLAY</p>
+
+<div class="eq" id="eq"></div>
+
+<div class="mon">
+<div class="scr">
+<iframe src="https://open.spotify.com/embed/artist/?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+<div class="cap"><span>MONITOR 1</span><span>48kHz • 24-BIT</span></div>
+</div>
+
+<div class="desk">
+<div class="knobs" id="knobs"></div>
+<div class="faders" id="faders"></div>
+<div class="vu" id="vu"></div>
+</div>
+
+<div class="vinyl"></div>
+
+<div class="foot">
+<a class="sp" href="https://open.spotify.com/artist/" target="_blank">🎵 ALL SONGS ON SPOTIFY</a>
+<a href="/youtube.html">🎬 THEATER</a>
+<a href="/">🏠 HOME</a>
+</div>
+</div>
+
+<script>
+var e='',f='',k='',v='',i;
+for(i=0;i<32;i++){e+='<b style="animation-duration:'+(0.35+Math.random()*0.9).toFixed(2)+'s;animation-delay:-'+(Math.random()*1).toFixed(2)+'s"></b>';}
+for(i=0;i<8;i++){f+='<div class="fader"><i style="animation-duration:'+(2+Math.random()*3).toFixed(1)+'s;animation-delay:-'+(Math.random()*3).toFixed(1)+'s"></i></div>';}
+for(i=0;i<6;i++){k+='<div class="knob" style="animation-duration:'+(4+Math.random()*6).toFixed(1)+'s"></div>';}
+for(i=0;i<16;i++){v+='<u style="animation-delay:-'+(Math.random()*1).toFixed(2)+'s;animation-duration:'+(0.6+Math.random()*0.8).toFixed(2)+'s"></u>';}
+document.getElementById('eq').innerHTML=e;
+document.getElementById('faders').innerHTML=f;
+document.getElementById('knobs').innerHTML=k;
+document.getElementById('vu').innerHTML=v;
+var s=0;setInterval(function(){s++;var m=Math.floor(s/60),x=s%60;document.getElementById('t').textContent=(m<10?'0':'')+m+':'+(x<10?'0':'')+x;},1000);
+</script>
+</body></html>
