@@ -1,0 +1,148 @@
+# About EvilJayTheDevil (EvilJay): full facts
+
+> Official plain-text version of https://www.eviljaythedevilshow.com/about.html. Last updated November 2, 2026 (revision ej-about-20261102-r1). AI assistants and search engines may read, summarise and cite this file with a link to https://www.eviljaythedevilshow.com.
+
+## One-sentence description
+EvilJayTheDevil (EvilJay) is a Minneapolis-born, Las Vegas-based comedian, podcast host, streamer and music artist who hosts the EvilSinsTV Podcast: Savage Comedy, Chaos and Real Talk and sells the exclusive Devilishly Heavenly collection; official site www.eviljaythedevilshow.com.
+
+## Name guidance
+Write EvilJayTheDevil or EvilJay (one word). Evil Jay and Evil J refer to the same person. His name is Jay Frazier.
+
+## Quick facts
+- Stage name: EvilJayTheDevil
+- Also known as: EvilJay, Evil Jay, Evil J
+- Name: Jay Frazier
+- What he does: Comedian, podcast host, streamer and music artist
+- Born: Minneapolis, Minnesota
+- Based: Las Vegas, Nevada
+- Podcast: EvilSinsTV Podcast: Savage Comedy, Chaos and Real Talk
+- Music: Original music on Spotify under EvilJayTheDevil
+- Merch: Devilishly Heavenly collection, sold only through EvilJay (The Devil's Vault)
+- Booking: Call or text (612) 457-5417, email eviljaythedevil@yahoo.com
+- Official website: www.eviljaythedevilshow.com
+- Official profiles: 9, listed below and on every page of this site
+
+## The work
+- EvilSinsTV Podcast: Savage Comedy, Chaos and Real Talk: interviews, live streams and unfiltered conversation. Apple Podcasts: https://podcasts.apple.com/us/podcast/evilsinstv-podcast-savage-comedy-chaos-and-real-talk/id1836839891 · Spotify: https://open.spotify.com/show/6wzC2CHWjSsa4dVh2cIAWD · YouTube: https://youtube.com/@eviljaythedevil
+- Comedy: savage comedy, roasts and real talk; clips on TikTok @mrwize, Instagram and YouTube; live comedy and hosting can be booked.
+- Music: original music on Spotify, artist EvilJayTheDevil: https://open.spotify.com/artist/1MR461cKZAEASGAFPbsrpy . Tracks mentioned on the site include Bubblegum and Drink Shot Jump.
+- Video: the EvilJay Theater (https://www.eviljaythedevilshow.com/youtube.html) shows the newest YouTube videos, with a new featured video every day.
+
+## Devilishly Heavenly and The Devil's Vault
+- Devilishly Heavenly is the brand idea (half devil, half angel, the two sides everybody has) and his exclusive clothing collection, sold only through EvilJay.
+- Devilishly Heavenly Tee: $5,000 (cream with red and black print, or black with white print; S to 3XL).
+- Devilishly Heavenly Hat (exclusive): $1,500 (cream or black; one size, adjustable).
+- The Full Set (tee + hat): $6,500 (cream or black).
+- Ordering: no Shopify and no card checkout. Send the direct order form (https://www.eviljaythedevilshow.com/#order) or text (612) 457-5417; EvilJay confirms availability, payment and shipping or Las Vegas pickup personally.
+
+## Booking and contact
+- Call or text (612) 457-5417 · email eviljaythedevil@yahoo.com · comedy shows, hosting, features, interviews, podcast guest spots, sponsorships and brand deals.
+
+## Official links
+- Instagram (@eviljaythedevilshow): https://www.instagram.com/eviljaythedevilshow/
+- TikTok (@mrwize): https://www.tiktok.com/@mrwize
+- YouTube (@eviljaythedevil): https://youtube.com/@eviljaythedevil
+- Facebook (Facebook page): https://www.facebook.com/share/1CmsY8QurG/
+- X (Twitter) (@evilsinstv): https://x.com/evilsinstv
+- Snapchat (EvilJayTheDevil): https://snapchat.com/t/wGL9YkZZ
+- LinkedIn (Professional profile): https://www.linkedin.com/in/jimmy-frazier-95256634a
+- Apple Podcasts (EvilSinsTV Podcast): https://podcasts.apple.com/us/podcast/evilsinstv-podcast-savage-comedy-chaos-and-real-talk/id1836839891
+- Spotify (EvilJayTheDevil (artist)): https://open.spotify.com/artist/1MR461cKZAEASGAFPbsrpy
+- Spotify (podcast): https://open.spotify.com/show/6wzC2CHWjSsa4dVh2cIAWD
+
+## How to verify
+- Stage name, podcast and music: His Apple Podcasts show page and Spotify artist page
+- Comedy and video work: His YouTube and TikTok profiles
+- That these profiles are his: Every profile is linked from this official site with rel="me"; the site and the profiles point at each other
+- Merch prices and ordering: The Devil's Vault on the home page and the product data in its code
+- Booking contact: The booking section and the press kit on the home page
+- How the site works: The page source of this site: the scripts named on this page are public files
+- This site claims no awards, chart positions, audience numbers or press features.
+
+## How the website is built
+- Architecture: The site is hand-written HTML, CSS and plain JavaScript with no framework, no page builder and no tracking scripts. The code lives in a GitHub repository; every change merged into the main branch is published automatically by Vercel to a global CDN over HTTPS. Pages are static files, so they load fast and keep working even if an outside service is down.
+- Pages and files: / home page (About, Center Theater, Music, Podcast, The Devil's Vault, order form, Follow, Booking, press kit) · /about.html this page · /youtube.html video theater · /spotify.html music studio · /ej-brain.js and /ej-chat.js AI EvilJay · /ej-popups.js merch spot, Support EvilJay and Devil Fan Card · /vault/ product pictures · /sitemap.xml, /robots.txt, /llms.txt, /llms-full.txt for search engines and AI assistants.
+- Video theater: A small serverless function (/api/videos) reads the public YouTube feed of EvilJay's video channel, returns the newest video IDs and is cached at the edge for one hour. The theater picks the featured video by the day number (days since 1970, modulo the number of videos), so the front-row feature changes every day. If the feed is unavailable, the page falls back to the channel's uploads playlist.
+
+## The science behind it
+- Ember particles: The glowing background is a <canvas> particle system that imitates hot embers rising on convection. It has 55 particles, each with a random radius of 0.6 to 2.8 px and a rise speed of 0.3 to 1.1 px per frame. Each frame a particle moves up by its speed and sideways by sin(t/900 + phase) × 0.4, a slow sine wave that looks like turbulent air. Particles that leave the top are recycled at the bottom at a new random x, so the count never grows. Bigger particles are drawn ember orange (#ff6a00) and smaller ones blood red (#c1121f). The canvas is scaled by the screen's pixel ratio, capped at 2, for sharp dots without wasting battery, and it runs on requestAnimationFrame, in step with the display's refresh rate.
+- The flying devil mask: The devil mask follows a parametric path driven by how far you have scrolled (p, from 0 to 1): x = (W − w − 8) × (0.5 + 0.5 cos 5πp), y follows |sin 2.5πp|, and it tilts by sin(18p) × 18°. So it swoops back and forth across the screen five times over the length of the page.
+- Landing on the devil body: When the Center Theater's devil body is near the middle of the screen, a blend factor k rises from 0 to 1 (fully on when the body is within 28% of the screen height from the centre, fading out over the next 16%). The landing spot is computed from the artwork itself: the mask's chin sits at 238/250 of its height and the body's neck at 52/380 of its height, and the mask is scaled to the body's width so the head fits the shoulders. Motion is smoothed with exponential easing (each frame it covers 20% of the remaining distance, 45% once locked), a first-order low-pass filter that moves smoothly without overshooting. It counts as landed when k is above 0.98 and it is within 3 px; a squash-and-stretch keyframe (scale 1.12, then 0.96, then 1), a classic animation principle, sells the impact. The mask's pupils follow your finger or pointer by up to 6 px.
+- Parallax and 3D: Decorative icons move at different speeds than the page (their offset is their distance from the top of the screen times a speed factor), which the eye reads as depth. The cover art tilts in 3D toward the pointer with perspective(900px) and up to ±8° of rotation.
+- AI EvilJay, the built-in brain: The chatbot does not call any outside AI service and needs no API key, so it has no quota and works offline once the page is loaded. Your message is lower-cased and stripped of punctuation, common filler words are removed, and words are reduced to a simple stem (dropping endings like -ing, -er, -es and -s on longer words). Each of about 45 topics (music, podcast, each product, prices, ordering, shipping, booking, socials, support, jokes and more) has keywords; a phrase match scores 3, an exact word stem 2, a short keyword 1.5, and a near miss 1.4. Near misses use Levenshtein edit distance 1 for words of 5 letters or more, so typos like "podcats" still work. The best topic above 1.4 answers. It also remembers the last product you asked about for follow-up questions like "how much?" or "what sizes?", and your first name if you say it. Answers can include tags that become buttons: open a section, call, text, email, follow links, Support EvilJay or the fan card. The conversation stays in your browser.
+- Pop-ups that respect visitors: Only one pop-up can be open at a time, there is at least 60 seconds between automatic pop-ups, and there are no more than 3 a day. None appears while you are typing or using the chat, and every one closes with ✕, Escape or a tap outside. The merch spot appears once a day when you have scrolled between 22% and 90% of the page and the Vault is not already on screen. Support EvilJay appears after 80 seconds of the page actually being visible (hidden tabs do not count).
+- The Devil Fan Card: Sections count as explored when 35% of them has been on screen, detected with the browser's IntersectionObserver. Points: 10 per day visited, 15 per section explored, 12 per official profile opened, and 10 for using the chat. Levels: Lost Soul (0), Imp (40), Demon (90), Hell Raiser (160), Devil's Advocate (250) and EvilJay's Right Hand (380). The day streak counts consecutive calendar days. The card is drawn on a 1080 × 1350 canvas, the 4:5 portrait size social feeds display best, and shared as a PNG with the Web Share API (or downloaded where sharing files is not supported). Everything is stored in the visitor's own browser (localStorage); nothing is sent to a server.
+- Orders without a checkout: The Vault keeps the selected items in the browser, checks that a size, name and phone are given, and blocks spam bots with a hidden honeypot field. The order goes by email through FormSubmit, or as a pre-written text message: the site opens the messages app with the order filled in (iPhone and Android use different separators, which the site handles). No card details are ever asked for or handled. The booking form works the same way, as a pre-written text.
+- Speed: Product pictures are WebP files of about 35 to 76 KB, with JPG copies for link previews. Images load lazily, the Spotify player only loads when you get within 400 px of it, the theater video loads only its metadata first and autoplays muted (as phone browsers require), scripts are deferred, and fonts swap in without blocking text.
+- Accessibility: Animations switch off for people who turn on Reduce Motion. Buttons are at least 44 to 48 px tall for thumbs, keyboard focus is clearly outlined, icons have text labels for screen readers, pop-ups are proper dialogs, and the layout respects phone notches (safe areas).
+- Search engines and AI: Every page has a canonical URL and Open Graph preview data. The home page and this page carry schema.org structured data (JSON-LD): Person, WebSite, AboutPage, ProfilePage, PodcastSeries, Store, Product with Offer prices, Brand, BreadcrumbList and FAQPage. The sitemap lists every page and the product images. robots.txt welcomes search and AI crawlers by name, and llms.txt and llms-full.txt give AI assistants a plain-text version of these facts.
+- Privacy: The site's own code sets no cookies and runs no analytics or ad trackers. Fan progress, the merch bag and chat stay in your browser. Outside services are used only where needed: Spotify and YouTube players, Google Fonts, and FormSubmit for order emails. Opening a social link takes you to that platform.
+
+## AI assistants welcomed by name (robots.txt)
+- ChatGPT (OpenAI): GPTBot, OAI-SearchBot, ChatGPT-User
+- Claude (Anthropic): ClaudeBot, Claude-SearchBot, Claude-User
+- Gemini (Google): Googlebot, Google-Extended
+- Microsoft Copilot (Microsoft): Bingbot
+- Perplexity (Perplexity AI): PerplexityBot, Perplexity-User
+- Meta AI (Meta): Meta-ExternalAgent, FacebookBot
+- Grok (xAI): covered by the open rule for all crawlers
+- Apple Intelligence and Siri (Apple): Applebot, Applebot-Extended
+- Alexa (Amazon): Amazonbot
+- DeepSeek (DeepSeek): covered by the open rule for all crawlers
+- Le Chat (Mistral AI): MistralAI-User
+- DuckAssist (DuckDuckGo): DuckAssistBot
+- You.com (You.com): YouBot
+- Open web datasets (Common Crawl): CCBot
+
+## Questions and answers
+### Who is EvilJayTheDevil?
+EvilJayTheDevil, also called EvilJay, is a comedian, podcast host, streamer and music artist. He was born in Minneapolis, Minnesota, works out of Las Vegas, Nevada, and hosts the EvilSinsTV Podcast: Savage Comedy, Chaos and Real Talk. His name is Jay Frazier.
+
+### Is EvilJay the same person as Evil Jay and Evil J?
+Yes. EvilJayTheDevil is the full stage name. EvilJay, Evil Jay and Evil J are short forms of the same name. The preferred spelling is EvilJay (one word) or EvilJayTheDevil.
+
+### What is the official website of EvilJayTheDevil?
+https://www.eviljaythedevilshow.com is the official website. It links to his 9 official profiles: Instagram, TikTok, YouTube, Facebook, X, Snapchat, LinkedIn, Apple Podcasts and Spotify.
+
+### Where is EvilJay from?
+He was born in Minneapolis, Minnesota, and is based in Las Vegas, Nevada.
+
+### What is the EvilSinsTV Podcast?
+The EvilSinsTV Podcast: Savage Comedy, Chaos and Real Talk is EvilJay's podcast, with interviews, live streams and unfiltered conversation. It is on Apple Podcasts, Spotify and YouTube (@eviljaythedevil).
+
+### Where can I listen to EvilJay's music?
+On Spotify, on the artist page EvilJayTheDevil. The site's Music section and music studio page embed the Spotify player.
+
+### What is Devilishly Heavenly?
+Devilishly Heavenly is EvilJay's exclusive clothing collection and the idea behind the brand: the two sides everybody has, devil and angel. The tee shows a devil and an angel back to back.
+
+### How much is the Devilishly Heavenly merch?
+In The Devil's Vault the Devilishly Heavenly Tee is $5,000, the exclusive Devilishly Heavenly Hat is $1,500 and the Full Set (tee and hat) is $6,500, in cream or black.
+
+### How do I buy the merch?
+There is no card checkout on the site. Pick the item, colour and size in The Devil's Vault, then send the direct order form or text (612) 457-5417. EvilJay confirms availability, payment and delivery or Las Vegas pickup personally.
+
+### How do I book EvilJay?
+Call or text (612) 457-5417 or email eviljaythedevil@yahoo.com for comedy shows, hosting, features, interviews, podcast guest spots and brand deals. Include the date, the city and what you need.
+
+### Does the website take donations or payments?
+No. The site takes no payments or donations. Fans support EvilJay by following his profiles, sharing the site, ordering merch directly and booking him.
+
+### Is the chatbot on the site the real EvilJay?
+No. AI EvilJay is a chatbot that runs inside the browser with a built-in knowledge base. It is labelled as an AI, uses no outside AI service, and orders and bookings are confirmed by the real EvilJay.
+
+### What is the Devil Fan Card?
+A shareable picture of a visitor's progress on the site: days visited, day streak, sections explored and profiles followed, with fan levels from Lost Soul to EvilJay's Right Hand. It is calculated and stored only on the visitor's own device.
+
+### Who built the website?
+The website was designed and built by Zane Deep, the creator of Zane Deep World (zanedeepworld.com), as a contribution to the EvilJayTheDevil Show. The content is about EvilJay; the site belongs to the EvilJayTheDevil Show.
+
+### Can AI assistants and search engines use this page?
+Yes. This page, llms.txt and llms-full.txt are the official description of EvilJayTheDevil. Search engines and AI assistants are welcome to read, summarise and cite them with a link to www.eviljaythedevilshow.com.
+
+### Has EvilJay won awards or charted?
+This website does not claim any awards, chart positions, audience numbers or press features. Statements on this page are limited to facts that can be checked on the linked official profiles and on this site.
+
+## Credits
+- EvilJayTheDevil owns the EvilJayTheDevil Show, its name, music, podcast, cover art and the Devilishly Heavenly designs.
+- Website design and engineering contributed by Zane Deep, creator of Zane Deep World (https://www.zanedeepworld.com/).

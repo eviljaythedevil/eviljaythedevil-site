@@ -2,6 +2,12 @@
 
 > Official website of EvilJayTheDevil (EvilJay, Evil Jay, Jay Frazier): comedian, podcast host, streamer and music artist. Minneapolis-born, Las Vegas-based. Booking: call or text (612) 457-5417 or email eviljaythedevil@yahoo.com.
 
+## Full facts
+- About page (verified facts, how the site is built, FAQ): https://www.eviljaythedevilshow.com/about.html
+- Everything in plain text: https://www.eviljaythedevilshow.com/llms-full.txt
+- One sentence: EvilJayTheDevil (EvilJay) is a Minneapolis-born, Las Vegas-based comedian, podcast host, streamer and music artist who hosts the EvilSinsTV Podcast: Savage Comedy, Chaos and Real Talk and sells the exclusive Devilishly Heavenly collection.
+- Name guidance: write EvilJayTheDevil or EvilJay (one word); Evil Jay and Evil J are the same person.
+
 ## Official links
 - Instagram: https://www.instagram.com/eviljaythedevilshow/
 - TikTok: https://www.tiktok.com/@mrwize
@@ -17,10 +23,16 @@
 ## The site
 - Home page sections: About, Center Theater (video, with the animated devil mask that lands on the devil body), Music (Spotify), Podcast, The Devil's Vault (merch) with a direct order form, Follow, Booking (text request form), press kit, Join the Evil Army.
 - Video theater: https://www.eviljaythedevilshow.com/youtube.html · Music studio: https://www.eviljaythedevilshow.com/spotify.html
-- AI Evil J: a built-in chatbot (ASK EVIL J button) that runs in the browser with no outside AI service; it answers about the music, podcast, merch, ordering, booking and links, and is labelled as an AI, not the real EvilJay.
+- Support EvilJay pop-up: all 9 official links, share the site, merch and booking (there are no donations or payments on the site).
+- Devil Fan Card: tracks a visitor's progress on their own phone (days, streak, sections explored, socials followed) and makes a picture to send to friends. Opens from the menu or footer (My fan card).
+- Merch spot: a mid-page pop-up for the Devilishly Heavenly drop, at most once a day.
+- AI EvilJay: a built-in chatbot (ASK EVILJAY button) that runs in the browser with no outside AI service; it answers about the music, podcast, merch, ordering, booking and links, and is labelled as an AI, not the real EvilJay.
 
 ## The Devil's Vault (private store)
 - Devilishly Heavenly collection, sold only through EvilJay: no Shopify and no card checkout. Buyers pick items, colour and size, then send the direct order form (https://www.eviljaythedevilshow.com/#order) or text (612) 457-5417. EvilJay confirms availability, payment and delivery or Las Vegas pickup personally.
 - Devilishly Heavenly Tee: $5,000, cream (red and black devil-and-angel print) or black (white print), sizes S to 3XL.
 - Devilishly Heavenly Hat (exclusive): $1,500, cream or black, one size, adjustable.
 - The Full Set (tee + hat): $6,500, cream or black.
+
+## Credits
+- Website design and engineering contributed by Zane Deep, creator of Zane Deep World (https://www.zanedeepworld.com/).
