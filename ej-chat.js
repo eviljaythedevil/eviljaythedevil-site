@@ -41,7 +41,7 @@ function local(q){q=q.toLowerCase();
  if(/(support|donat|tip|help him|fan card|progress|level)/.test(q))return 'Support EvilJay by following him everywhere, sharing the site, grabbing the merch and booking him. Your Devil Fan Card tracks your progress: share it with your friends. [SUPPORT] [FANCARD]';
  if(/(insta|tiktok|youtube|facebook|twitter|\bx\b|snap|linkedin|social|follow)/.test(q))return 'Follow EvilJay everywhere: Instagram @eviljaythedevilshow, TikTok @mrwize, YouTube @eviljaythedevil, X @evilsinstv and Snapchat @eviljaythedevil. [FOLLOW]';
  if(/(interview|digital social hour|video|watch|cinema)/.test(q))return 'The newest EvilJay videos play in the video theater. [GO:/cinema]';
- if(/(who|about|evil j|jay frazier|from)/.test(q))return 'EvilJay TheDevil is Jay Frazier: music, comedy and the EvilSinsTV Podcast. Minneapolis-born, Las Vegas-based. I\'m the AI version on his site.';
+ if(/(who|about|evil j|jay frazier|from)/.test(q))return 'EvilJay TheDevil is Jay Frazier: music, comedy and the EvilSinsTV Podcast. Chicago-born, based in Minneapolis and Las Vegas. I\'m the AI version on his site.';
  if(/(website|built|made|zane)/.test(q))return 'This site was designed and built by Zane Deep, the Las Vegas producer and developer behind zanedeepworld.com.';
  return 'My big brain is taking a quick break, but I can still help with the music, the podcast, the merch, booking and how to support EvilJay. For anything else, hit up EvilJay directly. [BOOK]';}
 function typing(on){if(on){var t=document.createElement('div');t.className='ty';t.id='ejcTy';t.innerHTML='<s></s><s></s><s></s>';el.m.appendChild(t);el.m.scrollTop=1e6;}else{var x=document.getElementById('ejcTy');if(x)x.remove();}}
