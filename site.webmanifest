@@ -1,20 +1,107 @@
 {
+ "id": "/",
  "name": "EvilJayTheDevil Show",
  "short_name": "EvilJay",
- "start_url": "/",
+ "description": "EvilJayTheDevil: comedian, EvilSinsTV Podcast host and music artist. Music, podcast, the Devilishly Heavenly drop and booking.",
+ "start_url": "/?source=app",
+ "scope": "/",
  "display": "standalone",
+ "orientation": "portrait",
  "background_color": "#000000",
  "theme_color": "#000000",
+ "lang": "en",
+ "dir": "ltr",
+ "categories": [
+  "entertainment",
+  "music",
+  "lifestyle"
+ ],
  "icons": [
   {
    "src": "/icon-192.png",
    "sizes": "192x192",
-   "type": "image/png"
+   "type": "image/png",
+   "purpose": "any"
   },
   {
    "src": "/icon-512.png",
    "sizes": "512x512",
-   "type": "image/png"
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/icon-maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
   }
- ]
+ ],
+ "screenshots": [
+  {
+   "src": "/app-shot-1.jpg",
+   "sizes": "780x1688",
+   "type": "image/jpeg",
+   "form_factor": "narrow",
+   "label": "EvilJayTheDevil Show home"
+  },
+  {
+   "src": "/app-shot-2.jpg",
+   "sizes": "780x1688",
+   "type": "image/jpeg",
+   "form_factor": "narrow",
+   "label": "The Devil's Vault"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "The Devil's Vault",
+   "short_name": "Merch",
+   "url": "/?source=app#merch",
+   "icons": [
+    {
+     "src": "/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Book EvilJay",
+   "short_name": "Book",
+   "url": "/?source=app#booking",
+   "icons": [
+    {
+     "src": "/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Music",
+   "url": "/?source=app#music",
+   "icons": [
+    {
+     "src": "/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "About EvilJay",
+   "short_name": "About",
+   "url": "/about.html",
+   "icons": [
+    {
+     "src": "/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  }
+ ],
+ "prefer_related_applications": false
 }
