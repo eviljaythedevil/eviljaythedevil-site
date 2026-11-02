@@ -7,6 +7,7 @@ addEventListener('appinstalled',function(){deferred=null;S('i',1);close();});
 function L(k){try{return JSON.parse(localStorage.getItem(C.key)||'{}')[k];}catch(e){return null;}}
 function S(k,v){try{var o=JSON.parse(localStorage.getItem(C.key)||'{}');o[k]=v;localStorage.setItem(C.key,JSON.stringify(o));}catch(e){}}
 var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+var ua=navigator.userAgent,inapp=/Instagram|FBAN|FBAV|FB_IAB|Snapchat|TikTok|musical_ly|Line\/|Twitter|LinkedInApp|GSA\//.test(ua);
 var phone=(matchMedia('(pointer:coarse)').matches&&Math.min(screen.width,screen.height)<900)||/Android|iPhone|iPod/.test(navigator.userAgent);
 var A=C.accent,B=C.accent2;
 var CSS='#appSheet{position:fixed;left:0;right:0;bottom:0;z-index:2147483600;display:flex;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom));pointer-events:none;font-family:'+C.font+'}'+
@@ -18,13 +19,14 @@ var CSS='#appSheet{position:fixed;left:0;right:0;bottom:0;z-index:2147483600;dis
 '#appSheet .how{margin-top:12px;padding:12px;border-radius:12px;background:rgba(255,255,255,.07);font-size:14px;line-height:1.5;color:#eee}#appSheet .how b{display:inline;font-size:14px}';
 function close(){var s=document.getElementById('appSheet');if(!s)return;s.classList.remove('on');setTimeout(function(){s.remove();},450);}
 function how(box){var h=box.querySelector('.how');if(!h){h=document.createElement('div');h.className='how';box.appendChild(h);}
- h.innerHTML=ios?'<b>1.</b> Tap the <b>Share</b> button <span aria-hidden="true">⬆️</span> at the bottom of Safari.<br><b>2.</b> Tap <b>Add to Home Screen</b>.':'<b>1.</b> Tap the browser menu <b>⋮</b> (top right).<br><b>2.</b> Tap <b>Install app</b> or <b>Add to Home screen</b>.';}
+ if(inapp){h.innerHTML='<b>This app\'s built-in browser can\'t install apps.</b><br><b>1.</b> Tap <b>•••</b> or <b>⋮</b> (top or bottom corner).<br><b>2.</b> Tap <b>'+(ios?'Open in Safari':'Open in Chrome')+'</b> (or Open in browser). The install steps appear there.';return;}
+ h.innerHTML=ios?'<b>1.</b> Tap the <b>Share</b> button <span aria-hidden="true">⬆️</span> (bottom of Safari, or top right in Chrome).<br><b>2.</b> Scroll down and tap <b>Add to Home Screen</b>.<br><b>3.</b> Tap <b>Add</b>. The app icon appears on your home screen.':'<b>1.</b> Tap the browser menu <b>⋮</b> (top right).<br><b>2.</b> Tap <b>Install app</b> or <b>Add to Home screen</b>.';}
 function install(box){if(deferred){var d=deferred;deferred=null;d.prompt();d.userChoice.then(function(r){if(r&&r.outcome==='accepted'){S('i',1);close();}else if(box)how(box);}).catch(function(){if(box)how(box);});}else if(box)how(box);else sheet(true);}
 function sheet(force){if(document.getElementById('appSheet'))return;var st=document.getElementById('appSheetCss');if(!st){st=document.createElement('style');st.id='appSheetCss';st.textContent=CSS;document.head.appendChild(st);}
  var w=document.createElement('div');w.id='appSheet';w.setAttribute('role','dialog');w.setAttribute('aria-label','Download the app');
  w.innerHTML='<div class="s"><div class="t"><img src="'+C.icon+'" alt=""><div><b>'+C.title+'</b><small>'+C.sub+'</small></div></div><div class="r"><button type="button" class="go">'+C.cta+'</button><button type="button" class="no">Not now</button></div></div>';
  document.body.appendChild(w);requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('on');});});
- var box=w.querySelector('.s');w.querySelector('.go').onclick=function(){install(box);};w.querySelector('.no').onclick=function(){S('d',Date.now());close();};}
+ var box=w.querySelector('.s'),g=w.querySelector('.go');if(ios||inapp){how(box);g.textContent='GOT IT';g.onclick=function(){S('d',Date.now());close();};}else g.onclick=function(){install(box);};w.querySelector('.no').onclick=function(){S('d',Date.now());close();};}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest(C.link);if(!a)return;e.preventDefault();var s=document.getElementById('appSheet');if(s)install(s.querySelector('.s'));else{sheet(true);}});
 function okPage(){if(!C.pages)return true;var p=location.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';return C.pages.indexOf(p)>=0;}
 if(!standalone&&phone&&okPage()&&!L('i')&&!(L('d')&&Date.now()-L('d')<7*864e5)){var go=function(){setTimeout(function(){sheet(false);},C.delay);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();}
