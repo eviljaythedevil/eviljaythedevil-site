@@ -16,7 +16,8 @@
 - LinkedIn: https://www.linkedin.com/in/jimmy-frazier-95256634a
 - Snapchat: https://snapchat.com/t/wGL9YkZZ
 - Apple Podcasts: https://podcasts.apple.com/us/podcast/evilsinstv-podcast-savage-comedy-chaos-and-real-talk/id1836839891
-- YouTube: https://youtube.com/@eviljaythedevil
+- YouTube Music: https://youtube.com/@eviljayyy
+- YouTube Podcast: https://youtube.com/@eviljaythedevil
 - Apple Music: https://music.apple.com/us/artist/eviljay/1525461812
 - Spotify: https://open.spotify.com/artist/1MR461cKZAEASGAFPbsrpy
 - Kick: https://kick.com/evilsinstv
@@ -29,7 +30,7 @@
 ## The site
 - Home page sections: About, Center Theater (video, with the animated devil mask that lands on the devil body), Music (Spotify), Podcast, The Devil's Vault (merch) with a direct order form, Follow, Booking (text request form), press kit, Join the Evil Army.
 - Video theater: https://www.eviljaythedevilshow.com/youtube.html · Music studio: https://www.eviljaythedevilshow.com/spotify.html
-- Support EvilJay pop-up: all 15 official links, share the site, merch and booking (there are no donations or payments on the site).
+- Support EvilJay pop-up: all 16 official links, share the site, merch and booking (there are no donations or payments on the site).
 - Devil Fan Card: tracks a visitor's progress on their own phone (days, streak, sections explored, socials followed) and makes a picture to send to friends. Opens from the menu or footer (My fan card).
 - Merch spot: a mid-page pop-up for the Devilishly Heavenly drop, at most once a day.
 - AI EvilJay: a built-in chatbot (ASK EVILJAY button) that runs in the browser with no outside AI service; it answers about the music, podcast, merch, ordering, booking and links, and is labelled as an AI, not the real EvilJay.
