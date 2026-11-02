@@ -32,7 +32,7 @@ var CSS='#ejpop{position:fixed;inset:0;z-index:90;display:flex;align-items:cente
 '#ejpop .ejp-st{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 12px;text-align:center}#ejpop .ejp-st div{padding:8px 4px;border:1px solid #3a1015;border-radius:10px;background:#0006;font:800 .72rem/1.2 Barlow,sans-serif;color:#cdbcb8}#ejpop .ejp-st b{display:block;font:400 1.4rem/1 "Permanent Marker",cursive;color:#ff6a00}';
 var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
 var cur=null,lastAt=0;
-function canShow(kind,force){if(force)return true;if(cur)return false;var t=Date.now();if(t-lastAt<60000)return false;var c=L('ej_pop_day',{d:'',n:0});if(c.d!==day())c={d:day(),n:0};if(c.n>=3)return false;
+function canShow(kind,force){if(force)return true;if(cur||document.getElementById('appSheet'))return false;var t=Date.now();if(t-lastAt<60000)return false;var c=L('ej_pop_day',{d:'',n:0});if(c.d!==day())c={d:day(),n:0};if(c.n>=3)return false;
  if(document.activeElement&&/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))return false;if(document.getElementById('ejcP')&&document.getElementById('ejcP').classList.contains('on'))return false;return true;}
 function count(){var c=L('ej_pop_day',{d:'',n:0});if(c.d!==day())c={d:day(),n:0};c.n++;S('ej_pop_day',c);}
 function open(html,kind){close();var o=document.createElement('div');o.id='ejpop';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.innerHTML='<div class="ejp-c"><button class="ejp-x" type="button" aria-label="Close">×</button>'+html+'</div>';

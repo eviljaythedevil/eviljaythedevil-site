@@ -1,17 +1,33 @@
-/* EvilJayTheDevil Show app: makes the site installable on Android (and Add to Home Screen on iPhone).
-   Chrome on Android offers "Install app" by itself; the "Get the app" links below open the install prompt or show how. */
-(function(){'use strict';
-if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});
-var deferred=null,app=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
-addEventListener('beforeinstallprompt',function(e){deferred=e;});
-addEventListener('appinstalled',function(){deferred=null;try{localStorage.setItem('ej_app','1');}catch(e){}});
-function how(){var ios=/iP(hone|ad|od)/.test(navigator.userAgent),d=document.createElement('div');
- d.setAttribute('role','dialog');d.style.cssText='position:fixed;inset:0;z-index:95;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.65)';
- d.innerHTML='<div style="width:min(100%,380px);padding:20px;border:2px solid #c1121f;border-radius:18px;background:#0b0506;color:#f2efe9;font:400 1rem/1.5 Barlow,system-ui,sans-serif;text-align:center"><img src="/icon-192.png" alt="" width="72" height="72" style="border-radius:16px"><h3 style="margin:10px 0 6px;font-size:1.3rem">Get the EvilJay app</h3><p style="margin:0 0 14px;color:#ddd0cc">'+
-  (ios?'Tap the Share button in Safari, then <b>Add to Home Screen</b>.':'Open the browser menu <b>⋮</b> and tap <b>Install app</b> (or <b>Add to Home screen</b>).')+'</p><button type="button" style="min-height:48px;padding:10px 22px;border:0;border-radius:12px;background:#c1121f;color:#fff;font-weight:800;cursor:pointer">GOT IT</button></div>';
- d.addEventListener('click',function(e){if(e.target===d||e.target.tagName==='BUTTON')d.remove();});document.body.appendChild(d);}
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ej-app]');if(!a)return;e.preventDefault();
- if(deferred){deferred.prompt();deferred.userChoice.finally(function(){deferred=null;});}else how();});
-if(app)document.addEventListener('DOMContentLoaded',function(){[].forEach.call(document.querySelectorAll('[data-ej-app]'),function(a){a.style.display='none';});});
-window.EJAPP={install:function(){if(deferred)deferred.prompt();else how();}};
+/* App install prompt for EvilJayTheDevil Show. Registers the app worker, then on phones offers "Download the app" at the start. */
+(function(){'use strict';var C={"name": "EvilJayTheDevil Show", "key": "ej_appprompt", "sw": "/sw.js", "icon": "/icon-192.png", "title": "Download the EvilJay app", "sub": "Free \u00b7 on your home screen \u00b7 opens full screen, like any app", "cta": "DOWNLOAD APP", "accent": "#e01b2b", "accent2": "#6a0b2a", "bg": "linear-gradient(180deg,#1a0609,#0b0506)", "border": "#c1121f88", "font": "Barlow,system-ui,sans-serif", "link": "[data-ej-app],[data-app]", "delay": 1200, "pages": null};if(window.__appPrompt)return;window.__appPrompt=1;
+if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register(C.sw).catch(function(){});});
+var deferred=null,standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;});
+addEventListener('appinstalled',function(){deferred=null;S('i',1);close();});
+function L(k){try{return JSON.parse(localStorage.getItem(C.key)||'{}')[k];}catch(e){return null;}}
+function S(k,v){try{var o=JSON.parse(localStorage.getItem(C.key)||'{}');o[k]=v;localStorage.setItem(C.key,JSON.stringify(o));}catch(e){}}
+var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+var phone=(matchMedia('(pointer:coarse)').matches&&Math.min(screen.width,screen.height)<900)||/Android|iPhone|iPod/.test(navigator.userAgent);
+var A=C.accent,B=C.accent2;
+var CSS='#appSheet{position:fixed;left:0;right:0;bottom:0;z-index:2147483600;display:flex;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom));pointer-events:none;font-family:'+C.font+'}'+
+'#appSheet .s{pointer-events:auto;width:min(100%,440px);padding:16px;border-radius:20px;background:'+C.bg+';border:1px solid '+C.border+';box-shadow:0 24px 70px rgba(0,0,0,.75);color:#fff;transform:translateY(130%);transition:transform .45s cubic-bezier(.2,1.1,.3,1)}'+
+'#appSheet.on .s{transform:none}#appSheet .t{display:flex;gap:14px;align-items:center}#appSheet img{width:62px;height:62px;border-radius:16px;flex:none;box-shadow:0 8px 20px rgba(0,0,0,.6)}'+
+'#appSheet b{display:block;font-size:17px;font-weight:800;line-height:1.25}#appSheet small{display:block;margin-top:3px;font-size:13.5px;line-height:1.4;color:#d6d3dc}'+
+'#appSheet .r{display:flex;gap:10px;margin-top:14px}#appSheet button{flex:1;min-height:48px;border-radius:12px;font:inherit;font-weight:800;font-size:15px;letter-spacing:.06em;cursor:pointer}'+
+'#appSheet .go{border:0;color:#fff;background:linear-gradient(135deg,'+A+','+B+');box-shadow:0 10px 26px '+A+'55}#appSheet .no{flex:.55;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff}'+
+'#appSheet .how{margin-top:12px;padding:12px;border-radius:12px;background:rgba(255,255,255,.07);font-size:14px;line-height:1.5;color:#eee}#appSheet .how b{display:inline;font-size:14px}';
+function close(){var s=document.getElementById('appSheet');if(!s)return;s.classList.remove('on');setTimeout(function(){s.remove();},450);}
+function how(box){var h=box.querySelector('.how');if(!h){h=document.createElement('div');h.className='how';box.appendChild(h);}
+ h.innerHTML=ios?'<b>1.</b> Tap the <b>Share</b> button <span aria-hidden="true">⬆️</span> at the bottom of Safari.<br><b>2.</b> Tap <b>Add to Home Screen</b>.':'<b>1.</b> Tap the browser menu <b>⋮</b> (top right).<br><b>2.</b> Tap <b>Install app</b> or <b>Add to Home screen</b>.';}
+function install(box){if(deferred){var d=deferred;deferred=null;d.prompt();d.userChoice.then(function(r){if(r&&r.outcome==='accepted'){S('i',1);close();}else if(box)how(box);}).catch(function(){if(box)how(box);});}else if(box)how(box);else sheet(true);}
+function sheet(force){if(document.getElementById('appSheet'))return;var st=document.getElementById('appSheetCss');if(!st){st=document.createElement('style');st.id='appSheetCss';st.textContent=CSS;document.head.appendChild(st);}
+ var w=document.createElement('div');w.id='appSheet';w.setAttribute('role','dialog');w.setAttribute('aria-label','Download the app');
+ w.innerHTML='<div class="s"><div class="t"><img src="'+C.icon+'" alt=""><div><b>'+C.title+'</b><small>'+C.sub+'</small></div></div><div class="r"><button type="button" class="go">'+C.cta+'</button><button type="button" class="no">Not now</button></div></div>';
+ document.body.appendChild(w);requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('on');});});
+ var box=w.querySelector('.s');w.querySelector('.go').onclick=function(){install(box);};w.querySelector('.no').onclick=function(){S('d',Date.now());close();};}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest(C.link);if(!a)return;e.preventDefault();var s=document.getElementById('appSheet');if(s)install(s.querySelector('.s'));else{sheet(true);}});
+function okPage(){if(!C.pages)return true;var p=location.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';return C.pages.indexOf(p)>=0;}
+if(!standalone&&phone&&okPage()&&!L('i')&&!(L('d')&&Date.now()-L('d')<7*864e5)){var go=function(){setTimeout(function(){sheet(false);},C.delay);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();}
+if(standalone)document.addEventListener('DOMContentLoaded',function(){[].forEach.call(document.querySelectorAll(C.link),function(a){a.style.display='none';});});
+window.APPPROMPT={open:function(){sheet(true);},install:function(){install(null);}};
 })();
