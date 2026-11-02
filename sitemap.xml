@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://eviljaythedevil.vercel.app/</loc><priority>1.0</priority></url>
-  <url><loc>https://eviljaythedevil.vercel.app/youtube.html</loc><priority>0.8</priority></url>
-  <url><loc>https://eviljaythedevil.vercel.app/spotify.html</loc><priority>0.8</priority></url>
-  <url><loc>https://eviljaythedevil.vercel.app/videos.html</loc><priority>0.8</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url><loc>https://www.eviljaythedevilshow.com/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>1.0</priority><image:image><image:loc>https://www.eviljaythedevilshow.com/images/eviljaythedevil-show-cover.jpg</image:loc></image:image><image:image><image:loc>https://www.eviljaythedevilshow.com/vault/tee-cream.jpg</image:loc></image:image><image:image><image:loc>https://www.eviljaythedevilshow.com/vault/tee-black.jpg</image:loc></image:image><image:image><image:loc>https://www.eviljaythedevilshow.com/vault/cap-cream.jpg</image:loc></image:image><image:image><image:loc>https://www.eviljaythedevilshow.com/vault/cap-black.jpg</image:loc></image:image><image:image><image:loc>https://www.eviljaythedevilshow.com/vault/set-cream.jpg</image:loc></image:image><image:image><image:loc>https://www.eviljaythedevilshow.com/vault/set-black.jpg</image:loc></image:image></url>
+<url><loc>https://www.eviljaythedevilshow.com/youtube.html</loc><lastmod>2026-11-02</lastmod><priority>0.8</priority></url>
+<url><loc>https://www.eviljaythedevilshow.com/spotify.html</loc><lastmod>2026-11-02</lastmod><priority>0.8</priority></url>
 </urlset>
