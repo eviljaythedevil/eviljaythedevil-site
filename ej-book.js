@@ -3,8 +3,9 @@
 (function(){'use strict';
 var root=document.getElementById('ejBook');if(!root)return;
 var MAIL='eviljaythedevil@yahoo.com',PHONE='+16124575417';
-var T={comedy:{n:'Live comedy show',ic:'🎤',p:[[30,1500],[60,3000],[90,4500]]},podcast:{n:'Podcast appearance',ic:'🎙️',p:[[60,2000],[90,3000],[120,4000]]},custom:{n:'Custom appearance',ic:'🎬',p:[]}};
-var CUSTOM=['Festival','Private event','Hosting','Music performance','Celebrity collaboration','Special project','Other'];
+var T={comedy:{n:'Live comedy show',ic:'🎤',p:[[30,1500],[60,3000],[90,4500]]},podcast:{n:'Podcast appearance',ic:'🎙️',p:[[60,2000],[90,3000],[120,4000]]},hosting:{n:'Hosting',ic:'🎟️',p:[]},music:{n:'Music performance',ic:'🎵',p:[]},custom:{n:'Other appearance',ic:'🎬',p:[]}};
+var QUOTE={hosting:1,music:1,custom:1};var LENS=['30 minutes','1 hour','2 hours','3 hours or more','The whole event','Not sure yet'];
+var CUSTOM=['Festival','Private event','Celebrity collaboration','Special project','Other'];
 var S={step:1,type:'',mins:0,price:0,kind:''};
 var money=function(n){return '$'+n.toLocaleString('en-US')};
 var len=function(m){return m<60?m+' minutes':m%60?Math.floor(m/60)+' hr '+(m%60)+' min':(m/60)+(m===60?' hour':' hours')};
@@ -23,24 +24,24 @@ var CSS='#ejBook{max-width:760px}#ejBook .stp{display:grid;grid-template-columns
 var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function v(id){var e=root.querySelector('#'+id);return e?e.value.trim():'';}
-function keep(){['bn','bph','bem','bco','bdate','btime','bcity','bppl','bbud','btrav','bnote','bkind'].forEach(function(id){var e=root.querySelector('#'+id);if(e)S[id]=e.value;});}
+function keep(){['bn','bph','bem','bco','bdate','btime','bcity','bppl','bbud','btrav','bnote','bkind','blen'].forEach(function(id){var e=root.querySelector('#'+id);if(e)S[id]=e.value;});}
 function val(id){return esc(S[id]||'');}
 function steps(){var L=['Package','Event','Contact','Review'];return '<ol class="stp" aria-label="Booking steps">'+L.map(function(l,i){var n=i+1;return '<li class="'+(n===S.step?'on':n<S.step?'done':'')+'">'+n+'. '+l+'</li>';}).join('')+'</ol>';}
 function draw(){var h=steps()+'<div class="bx">';
- if(S.step===1){h+='<h3>What are you booking?</h3><p class="hint">Pick a type and a length. Prices update as you go.</p><div class="opts c3">'+
-   ['comedy','podcast','custom'].map(function(k){return '<button type="button" class="op'+(S.type===k?' on':'')+'" data-t="'+k+'"><b>'+T[k].ic+' '+({comedy:'Comedy show',podcast:'Podcast',custom:'Custom'})[k]+'</b><small>'+(k==='comedy'?'$1,500 per 30 min':k==='podcast'?'$2,000 per hour':'Custom quote')+'</small></button>';}).join('')+'</div>';
-  if(S.type&&S.type!=='custom'){h+='<p class="hint" style="margin-top:4px">'+T[S.type].n+': choose the length</p><div class="opts c3">'+T[S.type].p.map(function(x){return '<button type="button" class="op'+(S.mins===x[0]?' on':'')+'" data-m="'+x[0]+'" data-p="'+x[1]+'"><small>'+len(x[0])+'</small><span class="pr">'+money(x[1])+'</span></button>';}).join('')+'</div>';}
-  if(S.type==='custom'){h+='<label>What kind of appearance?<select id="bkind">'+CUSTOM.map(function(c){return '<option'+(S.bkind===c?' selected':'')+'>'+c+'</option>';}).join('')+'</select></label><p class="hint">Festivals, private events, celebrity collaborations, hosting, music performances and special projects get a custom quote.</p>';}
+ if(S.step===1){h+='<h3>What are you booking?</h3><p class="hint">Pick a type and a length. Prices update as you go.</p><div class="opts c2">'+
+   ['comedy','podcast','hosting','music','custom'].map(function(k){return '<button type="button" class="op'+(S.type===k?' on':'')+'" data-t="'+k+'"'+(k==='custom'?' style="grid-column:1/-1"':'')+'><b>'+T[k].ic+' '+({comedy:'Comedy',podcast:'Podcast',hosting:'Hosting',music:'Music',custom:'Other'})[k]+'</b><small>'+(k==='comedy'?'$1,500 per 30 min':k==='podcast'?'$2,000 per hour':k==='custom'?'Festivals, private events, collabs, projects · custom quote':'Custom quote')+'</small></button>';}).join('')+'</div>';
+  if(S.type&&!QUOTE[S.type]){h+='<p class="hint" style="margin-top:4px">'+T[S.type].n+': choose the length</p><div class="opts c3">'+T[S.type].p.map(function(x){return '<button type="button" class="op'+(S.mins===x[0]?' on':'')+'" data-m="'+x[0]+'" data-p="'+x[1]+'"><small>'+len(x[0])+'</small><span class="pr">'+money(x[1])+'</span></button>';}).join('')+'</div>';}
+  if(S.type&&QUOTE[S.type]){if(S.type==='custom')h+='<label>What kind of appearance?<select id="bkind">'+CUSTOM.map(function(c){return '<option'+(S.bkind===c?' selected':'')+'>'+c+'</option>';}).join('')+'</select></label>';h+='<label>How long?<select id="blen">'+LENS.map(function(c){return '<option'+(S.blen===c?' selected':'')+'>'+c+'</option>';}).join('')+'</select></label><p class="hint">Hosting, music performances, festivals, private events, celebrity collaborations and special projects get a custom quote.</p>';}
  }
  if(S.step===2){h+='<h3>Your event</h3><p class="hint">'+summaryLine()+'</p><label>Company, podcast or event name *<input id="bco" value="'+val('bco')+'" autocomplete="organization"></label>'+
-  '<div class="row2"><label>What date do you want EvilJay? *<input id="bdate" type="date" value="'+val('bdate')+'"></label><label>What time? *<input id="btime" type="time" value="'+val('btime')+'"></label></div>'+
+  '<div class="row2"><label>What date do you want EvilJay? *<input id="bdate" type="date" value="'+val('bdate')+'"></label><label>What time does it start? *<input id="btime" type="time" value="'+val('btime')+'"></label></div>'+
   '<label>City, state and venue *<input id="bcity" value="'+val('bcity')+'" placeholder="Las Vegas, NV · The venue name"></label>'+
   '<div class="row2"><label>How many people are expected?<input id="bppl" inputmode="numeric" value="'+val('bppl')+'" placeholder="e.g. 250"></label><label>Your budget<input id="bbud" inputmode="decimal" value="'+val('bbud')+'" placeholder="$"></label></div>'+
   '<label>Will you cover travel and hotel expenses? *<select id="btrav"><option value="">Choose one</option>'+['Yes, travel and hotel are covered','Local event, no travel needed','No','Let\'s discuss'].map(function(o){return '<option'+(S.btrav===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select></label>';}
  if(S.step===3){h+='<h3>Your contact details</h3><p class="hint">EvilJay\'s booking manager will reach you here.</p><label>Full name *<input id="bn" value="'+val('bn')+'" autocomplete="name"></label>'+
   '<div class="row2"><label>Phone number *<input id="bph" type="tel" value="'+val('bph')+'" autocomplete="tel"></label><label>Email address *<input id="bem" type="email" value="'+val('bem')+'" autocomplete="email"></label></div>'+
   '<label>Special requests or additional details<textarea id="bnote" placeholder="Set length, theme, content level, sound and stage, anything we should know">'+val('bnote')+'</textarea></label>';}
- if(S.step===4){var est=S.type==='custom'?'Custom quote':money(S.price);
+ if(S.step===4){var est=QUOTE[S.type]?'Custom quote':money(S.price);
   h+='<h3>Review your request</h3><p class="hint">Check everything, then send it to EvilJay\'s booking manager.</p><div class="est"><span>Estimated performance fee</span><b>'+est+'</b></div><div class="sum">'+rows().map(function(r){return '<div>'+r[0]+'</div><div>'+esc(r[1])+'</div>';}).join('')+'</div>'+
   '<p class="small">Travel, lodging and additional production expenses are separate unless otherwise agreed upon. All appearances are subject to availability and booking confirmation. A deposit secures your date after confirmation; nothing is charged on this website.</p>'+
   '<label class="chk"><input type="checkbox" id="bok"> This is a serious business inquiry and the details above are correct.</label><input type="text" id="bhoney" tabindex="-1" autocomplete="off" style="display:none">';}
@@ -50,20 +51,21 @@ function draw(){var h=steps()+'<div class="bx">';
   '<div class="mgr"><b>From EvilJay\'s booking manager:</b><br>Hello, this is EvilJay\'s booking manager. Thank you for your interest in booking EvilJay! We received your request. Can you confirm your event date, location, performance length, and whether travel and hotel expenses are covered? Once confirmed, we\'ll discuss availability, pricing, and the deposit required to secure your date.</div>'+
   '<div class="nav"><a class="btn alt" href="'+smsLink()+'">💬 TEXT THE BOOKING MANAGER</a><button type="button" class="btn" data-new>NEW REQUEST</button></div>';}
  h+='</div>';root.innerHTML=h;}
-function summaryLine(){return S.type==='custom'?'Custom appearance: '+(S.bkind||CUSTOM[0])+' · custom quote':T[S.type].n+' · '+len(S.mins)+' · '+money(S.price);}
-function rows(){return [['Booking',S.type==='custom'?'Custom appearance: '+(S.bkind||CUSTOM[0]):T[S.type].n],['Length',S.type==='custom'?'To be discussed':len(S.mins)],['Company / event',S.bco],['Date',S.bdate],['Time',S.btime],['City, state, venue',S.bcity],['People expected',S.bppl||'-'],['Budget',S.bbud?(/^[\d,.]+$/.test(S.bbud)?'$'+(+S.bbud.replace(/,/g,'')).toLocaleString('en-US'):S.bbud):'-'],['Travel and hotel',S.btrav],['Name',S.bn],['Phone',S.bph],['Email',S.bem],['Details',S.bnote||'-']];}
-function text(){return 'EVILJAY BOOKING REQUEST\n'+rows().map(function(r){return r[0]+': '+(r[1]||'-');}).join('\n')+(S.type!=='custom'?'\nEstimated fee: '+money(S.price):'');}
+function kindName(){return S.type==='custom'?'Other: '+(S.bkind||CUSTOM[0]):T[S.type].n;}
+function summaryLine(){return QUOTE[S.type]?kindName()+' · '+(S.blen||LENS[0])+' · custom quote':T[S.type].n+' · '+len(S.mins)+' · '+money(S.price);}
+function rows(){return [['Booking',kindName()],['Length',QUOTE[S.type]?(S.blen||LENS[0]):len(S.mins)],['Company / event',S.bco],['Date',S.bdate],['Time',S.btime],['City, state, venue',S.bcity],['People expected',S.bppl||'-'],['Budget',S.bbud?(/^[\d,.]+$/.test(S.bbud)?'$'+(+S.bbud.replace(/,/g,'')).toLocaleString('en-US'):S.bbud):'-'],['Travel and hotel',S.btrav],['Name',S.bn],['Phone',S.bph],['Email',S.bem],['Details',S.bnote||'-']];}
+function text(){return 'EVILJAY BOOKING REQUEST\n'+rows().map(function(r){return r[0]+': '+(r[1]||'-');}).join('\n')+(!QUOTE[S.type]?'\nEstimated fee: '+money(S.price):'\nFee: custom quote');}
 function smsLink(){var ios=/iP(hone|ad|od)/.test(navigator.userAgent);return 'sms:'+PHONE+(ios?'&':'?')+'body='+encodeURIComponent(S.type?text():'Hi! I want to book EvilJay.');}
 function err(t){var e=root.querySelector('.err');if(e)e.textContent=t;}
 function check(){keep();
- if(S.step===1){if(!S.type)return err('Pick what you are booking.');if(S.type!=='custom'&&!S.mins)return err('Pick a length.');if(S.type==='custom')S.bkind=S.bkind||CUSTOM[0];}
+ if(S.step===1){if(!S.type)return err('Pick what you are booking.');if(!QUOTE[S.type]&&!S.mins)return err('Pick a length.');if(S.type==='custom')S.bkind=S.bkind||CUSTOM[0];if(QUOTE[S.type])S.blen=S.blen||LENS[0];}
  if(S.step===2){if(!S.bco||!S.bdate||!S.btime||!S.bcity||!S.btrav)return err('Please fill in the event name, date, time, city and venue, and travel.');}
  if(S.step===3){if(!S.bn||!S.bph||!S.bem)return err('Please add your full name, phone number and email.');if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.bem))return err('That email address does not look right.');}
  return true;}
 function go(n){S.step=n;draw();var t=document.getElementById('booking');if(t&&n>1)root.scrollIntoView({behavior:'smooth',block:'start'});var f=root.querySelector('input,select,textarea');if(f&&n>1&&n<4&&matchMedia('(min-width:700px)').matches)f.focus({preventScroll:true});}
 function send(){if(!root.querySelector('#bok').checked)return err('Please confirm this is a serious business inquiry.');if(root.querySelector('#bhoney').value)return;
  var b=root.querySelector('[data-send]');b.disabled=true;b.textContent='SENDING…';
- var data={_subject:'EvilJay booking request: '+(S.type==='custom'?S.bkind:T[S.type].n)+' · '+S.bdate+' · '+S.bco,_template:'table',_captcha:'false',_replyto:S.bem};rows().forEach(function(r){data[r[0]]=r[1]||'-';});data['Estimated fee']=S.type==='custom'?'Custom quote':money(S.price);
+ var data={_subject:'EvilJay booking request: '+kindName()+' · '+S.bdate+' · '+S.bco,_template:'table',_captcha:'false',_replyto:S.bem};rows().forEach(function(r){data[r[0]]=r[1]||'-';});data['Estimated fee']=QUOTE[S.type]?'Custom quote':money(S.price);
  fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)}).then(function(r){return r.json().catch(function(){return{};}).then(function(j){return r.ok&&String(j.success)==='true';});}).catch(function(){return false;}).then(function(ok){
   if(ok){go(5);}else{b.disabled=false;b.textContent='🔥 SUBMIT BOOKING REQUEST';err('The form could not send right now. Tap TEXT IT INSTEAD: your request is already written out.');}});}
 root.addEventListener('click',function(e){var x=e.target.closest('button');if(!x)return;
@@ -73,10 +75,10 @@ root.addEventListener('click',function(e){var x=e.target.closest('button');if(!x
  if(x.hasAttribute('data-back')){keep();go(S.step-1);return;}
  if(x.hasAttribute('data-send')){send();return;}
  if(x.hasAttribute('data-new')){S={step:1,type:'',mins:0,price:0};go(1);}});
-root.addEventListener('change',function(e){if(e.target.id==='bkind')S.bkind=e.target.value;});
+root.addEventListener('change',function(e){if(e.target.id==='bkind')S.bkind=e.target.value;if(e.target.id==='blen')S.blen=e.target.value;});
 /* the price cards above the form start the request with that package picked */
 document.addEventListener('click',function(e){var a=e.target.closest('[data-book]');if(!a)return;e.preventDefault();var p=a.getAttribute('data-book').split(':');S={step:1,type:p[0],mins:+(p[1]||0),price:+(p[2]||0)};
- if(S.type==='custom'){S.bkind=CUSTOM[0];}if(S.type!=='custom'&&S.mins){S.step=2;}draw();root.scrollIntoView({behavior:'smooth',block:'start'});});
+ if(S.type==='custom'){S.bkind=CUSTOM[0];}if(!QUOTE[S.type]&&S.mins){S.step=2;}draw();root.scrollIntoView({behavior:'smooth',block:'start'});});
 draw();
 window.EJBOOK={start:function(t){S={step:1,type:t||'',mins:0,price:0};draw();}};
 })();
