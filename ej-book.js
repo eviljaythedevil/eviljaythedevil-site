@@ -42,14 +42,12 @@ function draw(){var h=steps()+'<div class="bx">';
   '<div class="row2"><label>Phone number *<input id="bph" type="tel" value="'+val('bph')+'" autocomplete="tel"></label><label>Email address *<input id="bem" type="email" value="'+val('bem')+'" autocomplete="email"></label></div>'+
   '<label>Special requests or additional details<textarea id="bnote" placeholder="Set length, theme, content level, sound and stage, anything we should know">'+val('bnote')+'</textarea></label>';}
  if(S.step===4){var est=QUOTE[S.type]?'Custom quote':money(S.price);
-  h+='<h3>Review your request</h3><p class="hint">Check everything, then send it to EvilJay\'s booking manager.</p><div class="est"><span>Estimated performance fee</span><b>'+est+'</b></div><div class="sum">'+rows().map(function(r){return '<div>'+r[0]+'</div><div>'+esc(r[1])+'</div>';}).join('')+'</div>'+
-  '<p class="small">Travel, lodging and additional production expenses are separate unless otherwise agreed upon. All appearances are subject to availability and booking confirmation. A deposit secures your date after confirmation; nothing is charged on this website.</p>'+
+  h+='<h3>Review your booking request</h3><p class="hint">Check everything, then send it to EvilJay\'s booking manager.</p><div class="est"><span>Estimated performance fee</span><b>'+est+'</b></div><div class="sum">'+rows().map(function(r){return '<div>'+r[0]+'</div><div>'+esc(r[1])+'</div>';}).join('')+'</div>'+
+  '<p class="small">Travel, lodging and additional production expenses are separate unless otherwise agreed upon. All appearances are subject to availability and booking confirmation.</p>'+
   '<label class="chk"><input type="checkbox" id="bok"> This is a serious business inquiry and the details above are correct.</label><input type="text" id="bhoney" tabindex="-1" autocomplete="off" style="display:none">';}
- if(S.step<5){h+='<p class="err" role="alert"></p><div class="nav">'+(S.step>1?'<button type="button" class="btn alt" data-back>← BACK</button>':'')+(S.step<4?'<button type="button" class="btn" data-next>CONTINUE →</button>':'<button type="button" class="btn gold" data-send>🔥 SUBMIT BOOKING REQUEST</button>')+'</div>';
+ if(S.step<5){h+='<p class="err" role="alert"></p><div class="nav">'+(S.step>1?'<button type="button" class="btn alt" data-back>← BACK</button>':'')+(S.step<4?'<button type="button" class="btn" data-next>CONTINUE →</button>':'<button type="button" class="btn gold" data-send>SUBMIT BOOKING REQUEST</button>')+'</div>';
   if(S.step===4)h+='<div class="nav" style="margin-top:10px"><a class="btn alt" href="'+smsLink()+'">💬 TEXT IT INSTEAD</a><a class="btn alt" href="tel:'+PHONE+'">📞 CALL</a></div>';}
- if(S.step===5){h+='<div class="ok"><div class="big">😈</div><h3>Thank you for your interest in booking EvilJay!</h3><p>Our booking manager will review your request and contact you with availability and next steps.</p></div>'+
-  '<div class="mgr"><b>From EvilJay\'s booking manager:</b><br>Hello, this is EvilJay\'s booking manager. Thank you for your interest in booking EvilJay! We received your request. Can you confirm your event date, location, performance length, and whether travel and hotel expenses are covered? Once confirmed, we\'ll discuss availability, pricing, and the deposit required to secure your date.</div>'+
-  '<div class="nav"><a class="btn alt" href="'+smsLink()+'">💬 TEXT THE BOOKING MANAGER</a><button type="button" class="btn" data-new>NEW REQUEST</button></div>';}
+ if(S.step===5){h+='<div class="ok"><div class="big">😈</div><p style="font-size:1.15rem;line-height:1.5;margin:0"><b>Thank you for your interest in booking EvilJay!</b> Our booking manager will review your request and contact you with availability and next steps.</p></div>';}
  h+='</div>';root.innerHTML=h;}
 function kindName(){return S.type==='custom'?'Other: '+(S.bkind||CUSTOM[0]):T[S.type].n;}
 function summaryLine(){return QUOTE[S.type]?kindName()+' · '+(S.blen||LENS[0])+' · custom quote':T[S.type].n+' · '+len(S.mins)+' · '+money(S.price);}
@@ -67,7 +65,7 @@ function send(){if(!root.querySelector('#bok').checked)return err('Please confir
  var b=root.querySelector('[data-send]');b.disabled=true;b.textContent='SENDING…';
  var data={_subject:'EvilJay booking request: '+kindName()+' · '+S.bdate+' · '+S.bco,_template:'table',_captcha:'false',_replyto:S.bem};rows().forEach(function(r){data[r[0]]=r[1]||'-';});data['Estimated fee']=QUOTE[S.type]?'Custom quote':money(S.price);
  fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)}).then(function(r){return r.json().catch(function(){return{};}).then(function(j){return r.ok&&String(j.success)==='true';});}).catch(function(){return false;}).then(function(ok){
-  if(ok){go(5);}else{b.disabled=false;b.textContent='🔥 SUBMIT BOOKING REQUEST';err('The form could not send right now. Tap TEXT IT INSTEAD: your request is already written out.');}});}
+  if(ok){go(5);}else{b.disabled=false;b.textContent='SUBMIT BOOKING REQUEST';err('The form could not send right now. Tap TEXT IT INSTEAD: your request is already written out.');}});}
 root.addEventListener('click',function(e){var x=e.target.closest('button');if(!x)return;
  if(x.dataset.t){keep();S.type=x.dataset.t;S.mins=0;S.price=0;draw();return;}
  if(x.dataset.m){S.mins=+x.dataset.m;S.price=+x.dataset.p;draw();return;}
