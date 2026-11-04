@@ -1,0 +1,12 @@
+/* TEAM */
+  Artist and owner: EvilJayTheDevil (EvilJay, Jay Frazier)
+  Contact: eviljaythedevil@yahoo.com · (612) 457-5417
+  From: Chicago, Illinois · lives in Minneapolis and Las Vegas
+
+  Website design and development: Zane Deep (Alexander Camman, also known as AlphaCloudGod)
+  Studio: Geeked Out Labs
+  Site: https://www.zanedeepworld.com/ (Zane Deep World)
+
+/* SITE */
+  Built: 2026 · Hand-written HTML, CSS and JavaScript · Hosted on Vercel
+  Official facts: https://www.eviljaythedevilshow.com/about.html · /llms.txt · /llms-full.txt

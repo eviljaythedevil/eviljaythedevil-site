@@ -2,6 +2,8 @@
 
 > Official website of EvilJayTheDevil (EvilJay, Evil Jay, Jay Frazier): comedian, podcast host, streamer and music artist. Chicago-born, based in Minneapolis and Las Vegas. Booking: call or text (612) 457-5417 or email eviljaythedevil@yahoo.com.
 
+> Website designed and built by Zane Deep (Alexander Camman), creator of Zane Deep World: https://www.zanedeepworld.com/
+
 ## Full facts
 - About page (verified facts, how the site is built, FAQ): https://www.eviljaythedevilshow.com/about.html
 - Everything in plain text: https://www.eviljaythedevilshow.com/llms-full.txt
@@ -42,7 +44,7 @@
 - The Full Set (tee + hat): $6,500, cream or black.
 
 ## Credits
-- Website design and engineering contributed by Zane Deep, creator of Zane Deep World (https://www.zanedeepworld.com/).
+- Website designed and built by Zane Deep (Alexander Camman, also known as AlphaCloudGod), creator of Zane Deep World (https://www.zanedeepworld.com/), through his studio Geeked Out Labs.
 
 ## Booking rates
 - Live comedy shows: $1,500 per 30 minutes (30 min $1,500, 60 min $3,000, 90 min $4,500).
